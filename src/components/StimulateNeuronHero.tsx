@@ -774,7 +774,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
               TOBY<br />GOLLAN<br />MYERS
             </h1>
             
-            {/* Neuron - centered horizontally and vertically, 1.92x bigger (1.6 * 1.2) */}
+            {/* Neuron - centered horizontally and vertically, 1.92x bigger (1.6 * 1.2), moved 15px right and 30px up */}
             <div className="flex-1 flex items-center justify-center w-full" style={{ width: '100vw', margin: 0, padding: 0 }}>
               <div 
                 id="mobile-neuron-container"
@@ -784,7 +784,9 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  margin: '0 auto'
+                  margin: '0 auto',
+                  marginLeft: '15px',
+                  marginTop: '-30px'
                 }}
               >
                 <NeuronModule
