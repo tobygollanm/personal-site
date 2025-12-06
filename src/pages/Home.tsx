@@ -97,7 +97,7 @@ export default function Home() {
         <div className="w-screen h-full flex-shrink-0 flex flex-col" style={{ margin: 0, padding: 0, marginLeft: 0 }}>
           {/* Header spanning full width (sidebar + main content) */}
           {showIntro && (
-            <header className="w-full flex items-end relative" style={{ paddingTop: '0px', paddingBottom: '0px' }}>
+            <header className="w-full flex items-end relative" style={{ paddingTop: '0px', paddingBottom: '0px', marginBottom: '-20px' }}>
               {/* Desktop version - Left side - headshot (in sidebar area) */}
               <div className="hidden md:block w-64 flex-shrink-0 flex items-end justify-center">
                 <div style={{ transform: 'scale(0.7)', transformOrigin: 'center' }}>
@@ -147,7 +147,7 @@ export default function Home() {
             </div>
             
             {/* Main content - scrollable area with all sections */}
-            <div className="flex-1 overflow-y-auto overflow-x-hidden main-content-scrollable flex flex-col" style={{ paddingBottom: '30px' }}>
+            <div className="flex-1 overflow-y-auto overflow-x-hidden main-content-scrollable flex flex-col">
               <div className="flex-1">
                 <div className="max-w-3xl mx-auto main-content-wrapper" style={{ padding: '1rem', paddingLeft: '12.8px', marginTop: '-35px' }}>
                   <style dangerouslySetInnerHTML={{__html: `
