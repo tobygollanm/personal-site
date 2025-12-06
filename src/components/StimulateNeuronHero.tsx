@@ -830,10 +830,10 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
           const svgElement = svgRef.current
           if (!svgElement) return null
           
-          // Check if parent has mobile scale transform (1.6x)
+          // Check if parent has mobile scale transform (1.6x) - only on mobile portrait
           const container = document.getElementById('mobile-neuron-container')
-          const isMobile = container !== null
-          const mobileScale = isMobile ? 1.6 : 1
+          const isMobilePortrait = container !== null
+          const mobileScale = isMobilePortrait ? 1.6 : 1
           
           const svgRect = svgElement.getBoundingClientRect()
           const svgViewBoxWidth = 850
@@ -851,11 +851,11 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
           const peptideYInSvg = generateLightningAxon.peptideStartY + 0
           
           // Convert to viewport coordinates
-          // On mobile, we need to account for the container's scale transform
+          // On mobile portrait, we need to account for the container's scale transform
           let peptideXInViewport: number
           let peptideYInViewport: number
           
-          if (isMobile && container) {
+          if (isMobilePortrait && container) {
             const containerRect = container.getBoundingClientRect()
             const containerCenterX = containerRect.left + containerRect.width / 2
             const containerCenterY = containerRect.top + containerRect.height / 2
