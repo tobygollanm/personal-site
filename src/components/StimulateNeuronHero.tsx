@@ -817,28 +817,6 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
           
           // Convert to viewport coordinates
           // On mobile, we need to account for the container's scale transform
-          if (isMobile && container) {
-            const containerRect = container.getBoundingClientRect()
-            const containerCenterX = containerRect.left + containerRect.width / 2
-            const containerCenterY = containerRect.top + containerRect.height / 2
-            
-            // SVG's center in its own coordinate system
-            const svgCenterXInSvg = svgViewBoxWidth / 2
-            const svgCenterYInSvg = svgViewBoxHeight / 2
-            
-            // Peptide position relative to SVG center
-            const relativeX = (peptideXInSvg - svgCenterXInSvg) * scaleX
-            const relativeY = (peptideYInSvg - svgCenterYInSvg) * scaleY
-            
-            // Apply mobile scale and position relative to container center
-            const peptideXInViewport = containerCenterX + relativeX * mobileScale
-            const peptideYInViewport = containerCenterY + relativeY * mobileScale
-          } else {
-            // Desktop: original calculation
-            const peptideXInViewport = svgRect.left + (peptideXInSvg * scaleX)
-            const peptideYInViewport = svgRect.top + (peptideYInSvg * scaleY)
-          }
-          
           let peptideXInViewport: number
           let peptideYInViewport: number
           
