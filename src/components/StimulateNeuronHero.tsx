@@ -751,28 +751,32 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         {/* Mobile portrait layout: flex column - name at top, neuron centered */}
         {isMobile && !isLandscape && (
-          <div className="flex flex-col h-full">
-            {/* Name text - top, left aligned, each word on its own line, 70% of current size */}
+          <div className="flex flex-col h-full items-center">
+            {/* Name text - top, centered on page, left aligned within text container, moved down 20px */}
             <h1 
               className="font-normal text-foreground uppercase"
               style={{ 
                 fontSize: 'clamp(2.73rem, 7.28vw, 4.55rem)', // 70% of current (3.9*0.7=2.73, 10.4*0.7=7.28, 6.5*0.7=4.55)
                 lineHeight: '1.2',
                 letterSpacing: '0.05em',
-                paddingTop: '35px', // 20px + 15px = 35px
+                paddingTop: '55px', // 35px + 20px = 55px
                 paddingLeft: '25px',
                 paddingRight: '25px',
                 zIndex: 10,
                 width: '100%',
-                textAlign: 'left', // Left margin justified
-                margin: 0
+                maxWidth: '100%',
+                textAlign: 'left', // Left aligned within the text container
+                margin: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start' // Left align text within centered container
               }}
             >
               TOBY<br />GOLLAN<br />MYERS
             </h1>
             
-            {/* Neuron - centered in remaining space, 1.92x bigger (1.6 * 1.2), moved up 40px */}
-            <div className="flex-1 flex items-center justify-center" style={{ marginTop: '-40px' }}>
+            {/* Neuron - centered relative to mobile window, 1.92x bigger (1.6 * 1.2), moved up 40px */}
+            <div className="flex-1 flex items-center justify-center w-full" style={{ marginTop: '-40px' }}>
               <div 
                 id="mobile-neuron-container"
                 style={{ transform: 'scale(1.92)', transformOrigin: 'center' }} // 1.6 * 1.2 = 1.92 (20% larger)
