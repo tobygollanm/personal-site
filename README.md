@@ -2,6 +2,8 @@
 
 A minimal, fast personal website featuring animated neuron graphics built with Vite, React, TypeScript, and TailwindCSS.
 
+<!-- Deployed via GitHub Actions -->
+
 ## Features
 
 - **StimulateNeuronHero**: Animated landing sequence with realistic neuron morphology
