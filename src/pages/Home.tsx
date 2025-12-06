@@ -159,7 +159,7 @@ export default function Home() {
                     }
                   `}} />
                 {/* Home Section */}
-                <section id="about" className="min-h-screen flex flex-col justify-center py-8 md:py-12">
+                <section id="about" className="min-h-screen flex flex-col justify-center py-8 md:py-12" style={{ marginTop: '-20px' }}>
                 {/* Image Slideshow */}
                 <div className="mb-6 md:mb-8" style={{ marginBottom: 'calc(1.5rem + 10px)' }}>
                   {/* Mobile: 70% width, Desktop: full width */}
