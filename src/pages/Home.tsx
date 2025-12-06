@@ -162,18 +162,21 @@ export default function Home() {
                 <section id="about" className="min-h-screen flex flex-col justify-center py-8 md:py-12">
                 {/* Image Slideshow */}
                 <div className="mb-6 md:mb-8">
-                  <ImageSlideshow
-                    images={[
-                      { type: 'video', src: `${import.meta.env.BASE_URL}images/about/slide3.mp4` },
-                      `${import.meta.env.BASE_URL}images/about/slide1.jpg`,
-                      `${import.meta.env.BASE_URL}images/about/slide2.jpg`,
-                    ]}
-                    interval={7000}
-                    className="rounded-lg"
-                  />
+                  {/* Mobile: 70% width, Desktop: full width */}
+                  <div style={{ width: '70%', margin: '0 auto' }} className="md:w-full md:m-0">
+                    <ImageSlideshow
+                      images={[
+                        { type: 'video', src: `${import.meta.env.BASE_URL}images/about/slide3.mp4` },
+                        `${import.meta.env.BASE_URL}images/about/slide1.jpg`,
+                        `${import.meta.env.BASE_URL}images/about/slide2.jpg`,
+                      ]}
+                      interval={7000}
+                      className="rounded-lg"
+                    />
+                  </div>
                 </div>
                 
-                <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
+                <div className="space-y-4 text-sm md:text-base text-foreground font-normal md:mt-0" style={{ marginTop: '10px' }}>
                   <p className="leading-relaxed">
                     Hi, I'm Toby. My main mission is to create neurotechnology for the enhancement of human health, performance and wellbeing.
                     <br /><br />

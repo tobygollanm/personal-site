@@ -123,6 +123,7 @@ export default function ImageSlideshow({
             zIndex: 30,
             pointerEvents: 'none',
             textAlign: 'center',
+            paddingBottom: '10px', // Add 10px spacer below caption
           }}
         >
           <span>{currentLabel.text}</span>
