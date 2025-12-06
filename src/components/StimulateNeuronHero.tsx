@@ -752,27 +752,27 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
         {/* Mobile portrait layout: flex column - name at top, neuron centered */}
         {isMobile && !isLandscape && (
           <div className="flex flex-col h-full">
-            {/* Name text - top, centered, each word on its own line, moved down 20px */}
+            {/* Name text - top, left aligned, each word on its own line, 70% of current size */}
             <h1 
               className="font-normal text-foreground uppercase"
               style={{ 
                 fontSize: 'clamp(2.73rem, 7.28vw, 4.55rem)', // 70% of current (3.9*0.7=2.73, 10.4*0.7=7.28, 6.5*0.7=4.55)
                 lineHeight: '1.2',
                 letterSpacing: '0.05em',
-                paddingTop: '55px', // 35px + 20px = 55px (moved down 20px)
+                paddingTop: '35px', // 20px + 15px = 35px
                 paddingLeft: '25px',
                 paddingRight: '25px',
                 zIndex: 10,
                 width: '100%',
-                textAlign: 'center', // Centered
+                textAlign: 'left', // Left margin justified
                 margin: 0
               }}
             >
               TOBY<br />GOLLAN<br />MYERS
             </h1>
             
-            {/* Neuron - centered in remaining space, 1.92x bigger, moved right 10px and up 30px */}
-            <div className="flex-1 flex items-center justify-center" style={{ marginTop: '-30px', marginLeft: '10px' }}>
+            {/* Neuron - centered in remaining space, 1.92x bigger (1.6 * 1.2), moved up 40px */}
+            <div className="flex-1 flex items-center justify-center" style={{ marginTop: '-40px' }}>
               <div 
                 id="mobile-neuron-container"
                 style={{ transform: 'scale(1.92)', transformOrigin: 'center' }} // 1.6 * 1.2 = 1.92 (20% larger)
