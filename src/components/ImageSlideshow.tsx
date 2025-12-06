@@ -42,16 +42,14 @@ export default function ImageSlideshow({
     if (src.includes('slide3.mp4')) {
       return {
         text: "neurons firing under a microscope (calcium-sensitive flourescence)",
-        hasArrow: true,
-        arrowTarget: 'center',
+        hasArrow: false,
         fontFamily: '"Caveat", cursive'
       }
     }
     if (src.includes('slide1.jpg')) {
       return {
         text: "observing a deep-brain stimulation surgery in the operating room",
-        hasArrow: true,
-        arrowTarget: 'upper-left-quadrant',
+        hasArrow: false,
         fontFamily: '"Caveat", cursive'
       }
     }
@@ -138,64 +136,6 @@ export default function ImageSlideshow({
         >
           <span>{currentLabel.text}</span>
         </div>
-      )}
-      
-      {/* Arrows - start just above text (below slide) and extend up onto slide */}
-      {currentLabel?.hasArrow && (
-        <>
-          {currentLabel.arrowTarget === 'center' ? (
-            // Arrow for slide3.mp4 - starts from below, extends up into slide (can overlap up to 20px)
-            <svg
-              className="absolute pointer-events-none"
-              style={{
-                left: '0',
-                bottom: '-4px', // Just above text (text is 4px below slide)
-                width: '100%',
-                height: '60px',
-                zIndex: 15,
-                overflow: 'visible',
-              }}
-              viewBox="0 0 100 60"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-            >
-              {/* Arrow starts from bottom, extends up into slide */}
-              <path
-                d="M 0 56 L 90 56 M 85 52 L 90 56 L 85 60"
-                stroke="hsl(var(--foreground))"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          ) : (
-            // Arrow for slide1.jpg - points up from below to center of upper left quadrant
-            <svg
-              className="absolute pointer-events-none"
-              style={{
-                left: '0',
-                bottom: '-4px', // Just above text
-                width: '25%', // Upper left quadrant width
-                height: 'calc(100% + 60px)', // Full height plus space below
-                zIndex: 15,
-                overflow: 'visible',
-              }}
-              viewBox="0 0 100 125"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {/* Arrow starts from bottom, points up to center of upper left quadrant */}
-              <path
-                d="M 50 125 L 50 25 M 45 30 L 50 25 L 55 30"
-                stroke="hsl(var(--foreground))"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          )}
-        </>
       )}
       
       {/* Media stack with crossfade - fixed container height so text stays in place */}
