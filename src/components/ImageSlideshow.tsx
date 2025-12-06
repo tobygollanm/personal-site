@@ -109,6 +109,16 @@ export default function ImageSlideshow({
         maxHeight: '70vh',
       }}
     >
+      <style dangerouslySetInnerHTML={{__html: `
+        @media (max-width: 767px) {
+          .portrait-video-slide {
+            transform: translateX(-50%) scale(2) !important;
+          }
+          .landscape-slide {
+            transform: scale(1.3) !important;
+          }
+        }
+      `}} />
       {/* Caption text - positioned below slides, centered */}
       {currentLabel && (
         <div
@@ -144,7 +154,7 @@ export default function ImageSlideshow({
               src={item.src}
               className={`absolute transition-opacity duration-1000 ${
                 isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
-              }`}
+              } ${isPortraitVideo ? 'portrait-video-slide' : 'landscape-slide'}`}
               style={{
                 ...(isPortraitVideo ? {
                   width: 'auto',
@@ -205,7 +215,7 @@ export default function ImageSlideshow({
             key={index}
             src={item.src}
             alt={`Slide ${index + 1}`}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
+            className={`absolute inset-0 transition-opacity duration-1000 landscape-slide ${
               isActive ? 'opacity-100' : 'opacity-0'
             }`}
             style={{
