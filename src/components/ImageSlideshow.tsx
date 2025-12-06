@@ -134,17 +134,27 @@ export default function ImageSlideshow({
         const isActive = index === currentIndex
         
         if (item.type === 'video') {
+          // Check if this is the portrait video (slide3.mp4) - scale it down to fit landscape container
+          const isPortraitVideo = item.src.includes('slide3.mp4')
+          
           return (
             <video
               key={index}
               ref={(el) => { videoRefs.current[index] = el }}
               src={item.src}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
+              className={`absolute transition-opacity duration-1000 ${
                 isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
               }`}
               style={{
-                width: '100%',
-                height: '100%',
+                left: '50%',
+                top: '50%',
+                transform: isPortraitVideo 
+                  ? 'translate(-50%, -50%) scale(0.6)' 
+                  : 'translate(-50%, -50%)',
+                width: isPortraitVideo ? 'auto' : '100%',
+                height: isPortraitVideo ? 'auto' : '100%',
+                maxWidth: isPortraitVideo ? '60%' : '100%',
+                maxHeight: isPortraitVideo ? '100%' : '100%',
                 objectFit: 'contain',
                 objectPosition: 'center'
               }}
