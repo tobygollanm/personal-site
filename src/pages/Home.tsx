@@ -102,7 +102,7 @@ export default function Home() {
               <div className="hidden md:block w-64 flex-shrink-0 flex items-end justify-center">
                 <div style={{ transform: 'scale(0.7)', transformOrigin: 'center' }}>
                   <img 
-                    src="/images/about/headshot.jpg" 
+                    src={`${import.meta.env.BASE_URL}images/about/headshot.jpg`}
                     alt="Toby Gollan-Myers"
                     className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-full"
                   />
@@ -164,10 +164,10 @@ export default function Home() {
                 <div className="mb-6 md:mb-8">
                   <ImageSlideshow
                     images={[
-                      { type: 'video', src: '/images/about/slide3.mp4' },
-                      '/images/about/slide1.jpg',
-                      '/images/about/slide2.jpg',
-                      '/images/about/slide4.jpg',
+                      { type: 'video', src: `${import.meta.env.BASE_URL}images/about/slide3.mp4` },
+                      `${import.meta.env.BASE_URL}images/about/slide1.jpg`,
+                      `${import.meta.env.BASE_URL}images/about/slide2.jpg`,
+                      `${import.meta.env.BASE_URL}images/about/slide4.jpg`,
                     ]}
                     interval={7000}
                     className="rounded-lg"
@@ -267,27 +267,27 @@ export default function Home() {
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <ul className="list-disc list-inside space-y-2">
                     <li>
-                      <MediaPopup src="/images/misc/surfvid.mp4" type="video">
+                      <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/surfvid.mp4`} type="video">
                         Surf gnarly waves
                       </MediaPopup> and try to do an air reverse (not even close)
                     </li>
                     <li>
-                      <MediaPopup src="/images/misc/trailrun.jpg" type="image">
+                      <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/trailrun.jpg`} type="image">
                         Run trails
                       </MediaPopup>, up and down mountains. If I can't make it to the trails, the hills of SF are plenty steep.
                     </li>
                     <li>
-                      Play guitar, bass, banjo. Played <MediaPopup src="/images/misc/birchwood.mp4" type="video">
+                      Play guitar, bass, banjo. Played <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/birchwood.mp4`} type="video">
                         sick shows
                       </MediaPopup> with 1000+ crowds.
                     </li>
                     <li>
-                      Ceramic mugs made with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're <MediaPopup src="/images/misc/piezomug.jpg" type="image">
+                      Ceramic mugs made with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/piezomug.jpg`} type="image">
                         safe to drink from.
                       </MediaPopup>
                     </li>
                     <li>
-                      <MediaPopup src="/images/misc/bigsur.jpg" type="image">
+                      <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/bigsur.jpg`} type="image">
                         Planned 3 retreats, biggest was 40+ ppl to Big Sur. Awesome times.
                       </MediaPopup>
                     </li>
