@@ -124,7 +124,7 @@ export default function Home() {
                 <h1 className="font-normal text-foreground uppercase text-lg tracking-wider whitespace-nowrap" style={{ transform: 'scale(1.2)', transformOrigin: 'left center' }}>
                   TOBY GOLLAN-MYERS
                 </h1>
-                <div style={{ transform: 'scale(1.5)', transformOrigin: 'center' }}>
+                <div style={{ transform: 'scale(1.425)', transformOrigin: 'center', marginLeft: '-10px' }}>
                   <IntroNeuronLogo size={60} />
                 </div>
               </div>
