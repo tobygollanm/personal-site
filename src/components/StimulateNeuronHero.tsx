@@ -717,34 +717,35 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
     >
       
       {/* Fixed content - stays in viewport */}
-      <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none">
-        {/* Layout: Name text on left, neuron centered on right */}
-        <div className="flex items-center justify-between w-full px-8 md:px-16">
-          {/* Name text - left side */}
-          <h1 
-            className="font-normal text-foreground uppercase"
-            style={{ 
-              fontSize: 'clamp(1.95rem, 5.2vw, 3.25rem)',
-              lineHeight: '1.2',
-              letterSpacing: '0.05em',
-              marginTop: '60px',
-              marginLeft: '25px',
-              zIndex: 10
-            }}
-          >
-            TOBY GOLLAN MYERS
-          </h1>
-          
-          {/* Neuron - centered */}
-          <div className="flex-1 flex items-center justify-center">
-            <NeuronModule
-              phase={phase}
-              neuronRef={neuronRef}
-              dots={dots}
-              generateLightningAxon={generateLightningAxon}
-              svgRef={svgRef}
-            />
-          </div>
+      <div className="absolute inset-0 w-full h-full flex flex-col md:flex-row items-center pointer-events-none">
+        {/* Name text - top on mobile, left on desktop */}
+        <h1 
+          className="font-normal text-foreground uppercase"
+          style={{ 
+            fontSize: 'clamp(1.95rem, 5.2vw, 3.25rem)',
+            lineHeight: '1.2',
+            letterSpacing: '0.05em',
+            paddingTop: '20px',
+            paddingLeft: '25px',
+            paddingRight: '25px',
+            zIndex: 10,
+            width: '100%',
+            textAlign: 'left',
+            marginBottom: '0'
+          }}
+        >
+          TOBY GOLLAN MYERS
+        </h1>
+        
+        {/* Neuron - centered on mobile, centered on desktop */}
+        <div className="flex-1 flex items-center justify-center w-full md:w-auto" style={{ marginTop: '0' }}>
+          <NeuronModule
+            phase={phase}
+            neuronRef={neuronRef}
+            dots={dots}
+            generateLightningAxon={generateLightningAxon}
+            svgRef={svgRef}
+          />
         </div>
       </div>
     </section>
