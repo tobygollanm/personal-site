@@ -776,10 +776,16 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
             </h1>
             
             {/* Neuron - centered relative to mobile window, 1.92x bigger (1.6 * 1.2), moved up 40px */}
-            <div className="flex-1 flex items-center justify-center w-full" style={{ marginTop: '-40px' }}>
+            <div className="flex-1 flex items-center justify-center w-full" style={{ marginTop: '-40px', position: 'relative', left: 0, right: 0 }}>
               <div 
                 id="mobile-neuron-container"
-                style={{ transform: 'scale(1.92)', transformOrigin: 'center' }} // 1.6 * 1.2 = 1.92 (20% larger)
+                style={{ 
+                  transform: 'scale(1.92)', 
+                  transformOrigin: 'center',
+                  position: 'relative',
+                  left: '50%',
+                  marginLeft: '-50%' // Center the scaled element
+                }}
               >
                 <NeuronModule
                   phase={phase}
