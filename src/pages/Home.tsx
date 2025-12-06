@@ -121,10 +121,10 @@ export default function Home() {
               
               {/* Mobile version - horizontal header */}
               <div className="flex md:hidden items-center justify-center w-full py-2" style={{ gap: '16px' }}>
-                <h1 className="font-normal text-foreground uppercase text-lg tracking-wider whitespace-nowrap" style={{ transform: 'scale(1.2)', transformOrigin: 'left center' }}>
+                <h1 className="font-normal text-foreground uppercase text-lg tracking-wider whitespace-nowrap" style={{ transform: 'scale(1.2)', transformOrigin: 'left center', marginLeft: '5px' }}>
                   TOBY GOLLAN-MYERS
                 </h1>
-                <div style={{ transform: 'scale(1.35375)', transformOrigin: 'center', marginLeft: '10px' }}>
+                <div style={{ transform: 'scale(1.35375)', transformOrigin: 'center', marginLeft: '30px' }}>
                   <IntroNeuronLogo size={60} />
                 </div>
               </div>
