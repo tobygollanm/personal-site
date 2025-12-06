@@ -3,8 +3,10 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import NeuronsChain from './pages/NeuronsChain'
 
-// Base path for GitHub Pages (empty string for local dev, '/personal-site' for production)
-const basename = import.meta.env.PROD ? '/personal-site' : ''
+// Base path - empty string for root (custom domain serves from root)
+// If using custom domain, always use root. If you need github.io/personal-site/, 
+// use runtime detection: window.location.hostname.includes('github.io') ? '/personal-site' : ''
+const basename = ''
 
 export const router = createBrowserRouter([
   {

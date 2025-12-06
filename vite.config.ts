@@ -3,8 +3,10 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig(({ command }) => ({
   plugins: [react()],
-  // Use '/' for local dev, '/personal-site/' for production builds (GitHub Pages)
-  base: command === 'build' ? '/personal-site/' : '/',
+  // Use '/' for local dev and production (custom domain serves from root)
+  // If you need to support both custom domain and github.io/personal-site/, 
+  // we'd need runtime detection, but custom domain should use '/'
+  base: '/',
   build: {
     rollupOptions: {
       output: {
