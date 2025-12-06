@@ -25,9 +25,40 @@ function usePrefersReducedMotion() {
   return reduced
 }
 
+function useIsLandscape() {
+  const [isLandscape, setIsLandscape] = useState(false)
+  
+  useEffect(() => {
+    const checkOrientation = () => {
+      setIsLandscape(window.matchMedia('(orientation: landscape)').matches)
+    }
+    
+    checkOrientation()
+    const mediaQuery = window.matchMedia('(orientation: landscape)')
+    mediaQuery.addEventListener('change', checkOrientation)
+    
+    return () => {
+      mediaQuery.removeEventListener('change', checkOrientation)
+    }
+  }, [])
+  
+  return isLandscape
+}
+
 export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptideRelease }: StimulateNeuronHeroProps) {
   const [phase, setPhase] = useState<Phase>('idle')
   const prefersReduced = usePrefersReducedMotion()
+  const isLandscape = useIsLandscape()
+  const [isMobile, setIsMobile] = useState(false)
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
   const neuronRef = useRef<NeuronHandle>(null)
   const releaseTimeoutRef = useRef<number | null>(null)
   const svgRef = useRef<SVGSVGElement>(null) // Ref to SVG element for peptide positioning
@@ -718,46 +749,49 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       
       {/* Fixed content - stays in viewport */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
-        {/* Mobile layout: flex column - name at top, neuron centered */}
-        <div className="flex flex-col md:hidden h-full">
-          {/* Name text - top, left aligned, each word on its own line, 2x bigger, 15px lower */}
-          <h1 
-            className="font-normal text-foreground uppercase"
-            style={{ 
-              fontSize: 'clamp(3.9rem, 10.4vw, 6.5rem)', // 2x bigger (1.95*2 = 3.9, 5.2*2 = 10.4, 3.25*2 = 6.5)
-              lineHeight: '1.2',
-              letterSpacing: '0.05em',
-              paddingTop: '35px', // 20px + 15px = 35px
-              paddingLeft: '25px',
-              paddingRight: '25px',
-              zIndex: 10,
-              width: '100%',
-              textAlign: 'left', // Left margin justified
-              margin: 0
-            }}
-          >
-            TOBY<br />GOLLAN<br />MYERS
-          </h1>
-          
-          {/* Neuron - centered in remaining space, 1.6x bigger */}
-          <div className="flex-1 flex items-center justify-center">
-            <div 
-              id="mobile-neuron-container"
-              style={{ transform: 'scale(1.6)', transformOrigin: 'center' }}
+        {/* Mobile portrait layout: flex column - name at top, neuron centered */}
+        {isMobile && !isLandscape && (
+          <div className="flex flex-col h-full">
+            {/* Name text - top, left aligned, each word on its own line, 2x bigger, 15px lower */}
+            <h1 
+              className="font-normal text-foreground uppercase"
+              style={{ 
+                fontSize: 'clamp(3.9rem, 10.4vw, 6.5rem)', // 2x bigger (1.95*2 = 3.9, 5.2*2 = 10.4, 3.25*2 = 6.5)
+                lineHeight: '1.2',
+                letterSpacing: '0.05em',
+                paddingTop: '35px', // 20px + 15px = 35px
+                paddingLeft: '25px',
+                paddingRight: '25px',
+                zIndex: 10,
+                width: '100%',
+                textAlign: 'left', // Left margin justified
+                margin: 0
+              }}
             >
-              <NeuronModule
-                phase={phase}
-                neuronRef={neuronRef}
-                dots={dots}
-                generateLightningAxon={generateLightningAxon}
-                svgRef={svgRef}
-              />
+              TOBY<br />GOLLAN<br />MYERS
+            </h1>
+            
+            {/* Neuron - centered in remaining space, 1.6x bigger */}
+            <div className="flex-1 flex items-center justify-center">
+              <div 
+                id="mobile-neuron-container"
+                style={{ transform: 'scale(1.6)', transformOrigin: 'center' }}
+              >
+                <NeuronModule
+                  phase={phase}
+                  neuronRef={neuronRef}
+                  dots={dots}
+                  generateLightningAxon={generateLightningAxon}
+                  svgRef={svgRef}
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
         
-        {/* Desktop layout: flex row - name on left, neuron centered on right */}
-        <div className="hidden md:flex items-center justify-between w-full h-full px-8 md:px-16">
+        {/* Desktop and mobile landscape layout: flex row - name on left, neuron centered on right */}
+        {(!isMobile || isLandscape) && (
+          <div className="flex items-center justify-between w-full h-full px-8 md:px-16">
           {/* Name text - left side */}
           <h1 
             className="font-normal text-foreground uppercase"
@@ -784,6 +818,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
             />
           </div>
         </div>
+        )}
       </div>
     </section>
     
