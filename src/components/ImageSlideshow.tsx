@@ -235,21 +235,21 @@ export default function ImageSlideshow({
           {/* Previous button - left side */}
           <button
             onClick={goToPrevious}
-            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 p-1.5 border border-gray-400/50 bg-gray-300/20 hover:bg-gray-300/40 rounded transition-all duration-200"
+            className="absolute top-1/2 -translate-y-1/2 z-20 p-2 text-white hover:opacity-70 transition-opacity duration-200"
             aria-label="Previous slide"
+            style={{ left: '-24px' }}
           >
             <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-gray-700"
             >
               <path
-                d="M7.5 9L4.5 6L7.5 3"
-                stroke="currentColor"
-                strokeWidth="1.5"
+                d="M10 12L6 8L10 4"
+                stroke="white"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
@@ -259,21 +259,21 @@ export default function ImageSlideshow({
           {/* Next button - right side */}
           <button
             onClick={goToNext}
-            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 p-1.5 border border-gray-400/50 bg-gray-300/20 hover:bg-gray-300/40 rounded transition-all duration-200"
+            className="absolute top-1/2 -translate-y-1/2 z-20 p-2 text-white hover:opacity-70 transition-opacity duration-200"
             aria-label="Next slide"
+            style={{ right: '-24px' }}
           >
             <svg
-              width="12"
-              height="12"
-              viewBox="0 0 12 12"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="text-gray-700"
             >
               <path
-                d="M4.5 3L7.5 6L4.5 9"
-                stroke="currentColor"
-                strokeWidth="1.5"
+                d="M6 4L10 8L6 12"
+                stroke="white"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
