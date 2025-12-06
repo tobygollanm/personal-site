@@ -161,7 +161,7 @@ export default function Home() {
                 {/* Home Section */}
                 <section id="about" className="min-h-screen flex flex-col justify-center py-8 md:py-12">
                 {/* Image Slideshow */}
-                <div className="mb-6 md:mb-8">
+                <div className="mb-6 md:mb-8" style={{ marginBottom: 'calc(1.5rem + 10px)' }}>
                   {/* Mobile: 70% width, Desktop: full width */}
                   <div style={{ width: '70%', margin: '0 auto' }} className="md:w-full md:m-0">
                     <ImageSlideshow
@@ -176,7 +176,7 @@ export default function Home() {
                   </div>
                 </div>
                 
-                <div className="space-y-4 text-sm md:text-base text-foreground font-normal md:mt-0" style={{ marginTop: '10px' }}>
+                <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p className="leading-relaxed">
                     Hi, I'm Toby. My main mission is to create neurotechnology for the enhancement of human health, performance and wellbeing.
                     <br /><br />

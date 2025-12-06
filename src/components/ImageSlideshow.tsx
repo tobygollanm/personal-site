@@ -107,7 +107,6 @@ export default function ImageSlideshow({
       style={{ 
         height: '400px', 
         maxHeight: '70vh',
-        paddingBottom: '10px' // Add 10px spacer below slideshow (after caption)
       }}
     >
       {/* Caption text - positioned below slides, centered */}
@@ -116,7 +115,7 @@ export default function ImageSlideshow({
           className="absolute w-full"
           style={{
             top: '100%',
-            marginTop: '4px',
+            marginTop: '5px', // 5px below slides on mobile and desktop
             fontFamily: 'IBM Plex Mono, monospace', // Normal page font
             fontSize: 'clamp(0.77rem, 1.76vw, 0.88rem)', // 20% smaller than before (was 0.9625rem to 1.1rem)
             color: 'hsl(0, 0%, 78%)', // 20% darker gray (foreground is 98%, so 78% is 20% darker)
