@@ -751,7 +751,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         {/* Mobile portrait layout: flex column - name at top, neuron centered */}
         {isMobile && !isLandscape && (
-          <div className="flex flex-col h-full items-center">
+          <div className="flex flex-col h-full items-center w-full" style={{ width: '100vw', margin: 0, padding: 0 }}>
             {/* Name text - top, centered on page, left aligned within text container, moved down 20px */}
             <h1 
               className="font-normal text-foreground uppercase"
@@ -760,13 +760,12 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                 lineHeight: '1.2',
                 letterSpacing: '0.05em',
                 paddingTop: '55px', // 35px + 20px = 55px
-                paddingLeft: '25px',
-                paddingRight: '25px',
+                paddingLeft: '0',
+                paddingRight: '0',
                 zIndex: 10,
-                width: '100%',
-                maxWidth: '100%',
+                width: 'auto',
                 textAlign: 'left', // Left aligned within the text container
-                margin: 0,
+                margin: '0 auto', // Center the text container horizontally
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'flex-start' // Left align text within centered container
@@ -775,8 +774,8 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
               TOBY<br />GOLLAN<br />MYERS
             </h1>
             
-            {/* Neuron - centered relative to mobile window, 1.92x bigger (1.6 * 1.2), moved up 40px */}
-            <div className="flex-1 flex items-center justify-center w-full" style={{ marginTop: '-40px', width: '100vw', maxWidth: '100%' }}>
+            {/* Neuron - centered horizontally and vertically, 1.92x bigger (1.6 * 1.2) */}
+            <div className="flex-1 flex items-center justify-center w-full" style={{ width: '100vw', margin: 0, padding: 0 }}>
               <div 
                 id="mobile-neuron-container"
                 style={{ 
@@ -784,7 +783,8 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                   transformOrigin: 'center',
                   display: 'flex',
                   justifyContent: 'center',
-                  alignItems: 'center'
+                  alignItems: 'center',
+                  margin: '0 auto'
                 }}
               >
                 <NeuronModule
