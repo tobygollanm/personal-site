@@ -146,15 +146,17 @@ export default function ImageSlideshow({
                 isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
               }`}
               style={{
-                left: '50%',
-                top: '50%',
-                transform: isPortraitVideo 
-                  ? 'translate(-50%, -50%) scale(0.6)' 
-                  : 'translate(-50%, -50%)',
-                width: isPortraitVideo ? 'auto' : '100%',
-                height: isPortraitVideo ? 'auto' : '100%',
-                maxWidth: isPortraitVideo ? '60%' : '100%',
-                maxHeight: isPortraitVideo ? '100%' : '100%',
+                ...(isPortraitVideo ? {
+                  width: 'auto',
+                  height: '100%',
+                  maxWidth: '50%',
+                  left: '50%',
+                  transform: 'translateX(-50%)'
+                } : {
+                  width: '100%',
+                  height: '100%'
+                }),
+                top: '0',
                 objectFit: 'contain',
                 objectPosition: 'center'
               }}
