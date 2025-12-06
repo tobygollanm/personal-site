@@ -167,7 +167,6 @@ export default function Home() {
                       { type: 'video', src: `${import.meta.env.BASE_URL}images/about/slide3.mp4` },
                       `${import.meta.env.BASE_URL}images/about/slide1.jpg`,
                       `${import.meta.env.BASE_URL}images/about/slide2.jpg`,
-                      `${import.meta.env.BASE_URL}images/about/slide4.jpg`,
                     ]}
                     interval={7000}
                     className="rounded-lg"
@@ -277,19 +276,15 @@ export default function Home() {
                       </MediaPopup>, up and down mountains. If I can't make it to the trails, the hills of SF are plenty steep.
                     </li>
                     <li>
-                      Play guitar, bass, banjo. Played <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/birchwood.mp4`} type="video">
+                      Play guitar, bass, banjo. Played <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/birchwood.jpg`} type="image">
                         sick shows
                       </MediaPopup> with 1000+ crowds.
                     </li>
                     <li>
-                      Ceramic mugs made with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/piezomug.jpg`} type="image">
-                        safe to drink from.
-                      </MediaPopup>
+                      Ceramic mugs made with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're safe to drink from.
                     </li>
                     <li>
-                      <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/bigsur.jpg`} type="image">
-                        Planned 3 retreats, biggest was 40+ ppl to Big Sur. Awesome times.
-                      </MediaPopup>
+                      Planned 3 retreats, biggest was 40+ ppl to Big Sur. Awesome times.
                     </li>
                     <li>
                       Investing small amounts in psychedelic therapy and other new psychiatric tech companies I think will succeed <InlineArticle
