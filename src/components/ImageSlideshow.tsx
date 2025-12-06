@@ -60,16 +60,7 @@ export default function ImageSlideshow({
   const currentItem = mediaItems[currentIndex]
   const currentLabel = getSlideLabel(currentItem.src)
 
-  // Navigation functions - auto-switch with interval
-  useEffect(() => {
-    if (mediaItems.length <= 1) return
-    
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % mediaItems.length)
-    }, interval)
-    
-    return () => clearInterval(timer)
-  }, [interval, mediaItems.length])
+  // Navigation functions - manual only (auto-switch removed)
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length)

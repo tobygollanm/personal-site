@@ -153,33 +153,36 @@ const IntroReveal = forwardRef<IntroRevealHandle, {}>((props, ref) => {
   }), [])
 
   const handleSectionClick = (sectionId: string) => {
-    // Find the section element in the main content area and scroll to it
+    // Find the section element in the main content area and scroll so the title is at the top
     const sectionElement = document.getElementById(sectionId)
     if (sectionElement) {
       // Get the main content container (the scrollable area)
       const mainContent = document.querySelector('.main-content-scrollable') as HTMLElement
       if (mainContent) {
-        // Calculate the scroll position needed to bring the section into view
+        // Find the h2 title within the section (or use section itself if no h2)
+        const titleElement = sectionElement.querySelector('h2') || sectionElement
+        
         // Get current scroll position of the container
         const containerScrollTop = mainContent.scrollTop
         
-        // Get bounding rectangles
+        // Get bounding rectangles relative to the document
         const containerRect = mainContent.getBoundingClientRect()
-        const elementRect = sectionElement.getBoundingClientRect()
+        const titleRect = titleElement.getBoundingClientRect()
         
-        // Calculate the scroll offset needed
-        // The element's position relative to the container's visible area
-        const relativeTop = elementRect.top - containerRect.top
-        const targetScrollTop = containerScrollTop + relativeTop - 20 // 20px offset from top
+        // Calculate the scroll offset needed to position the title at the top
+        // The title's position relative to the container's visible area
+        const relativeTop = titleRect.top - containerRect.top
+        const targetScrollTop = containerScrollTop + relativeTop
         
-        // Scroll to the calculated position
+        // Scroll to position the title at the top of the viewport
         mainContent.scrollTo({
           top: Math.max(0, targetScrollTop), // Ensure we don't scroll to negative values
           behavior: 'smooth'
         })
       } else {
-        // Fallback: scroll the section into view
-        sectionElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        // Fallback: scroll the title into view at the top
+        const titleElement = sectionElement.querySelector('h2') || sectionElement
+        titleElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
       }
     }
   }
