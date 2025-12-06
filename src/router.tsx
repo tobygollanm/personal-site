@@ -1,11 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import NeuronsChain from './pages/NeuronsChain'
-import Research from './pages/Research'
-import Neurotech from './pages/Neurotech'
-import Writing from './pages/Writing'
-import Misc from './pages/Misc'
 
 export const router = createBrowserRouter([
   {
@@ -20,21 +16,22 @@ export const router = createBrowserRouter([
         path: 'neurons',
         element: <NeuronsChain />,
       },
+      // Redirect section routes to home page - they're now sections on the home page
       {
         path: 'research',
-        element: <Research />,
+        element: <Navigate to="/#research" replace />,
       },
       {
         path: 'neurotech',
-        element: <Neurotech />,
+        element: <Navigate to="/#neurotech" replace />,
       },
       {
         path: 'writing',
-        element: <Writing />,
+        element: <Navigate to="/#writing" replace />,
       },
       {
         path: 'misc',
-        element: <Misc />,
+        element: <Navigate to="/#misc" replace />,
       },
     ],
   },

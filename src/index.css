@@ -3,26 +3,87 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-white text-black font-sans;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
+  :root {
+    --background: 140 8% 4%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 3%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 6 88% 52%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 85% 50%;
+    --radius: 0rem;
+    --cinematic-grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='6.5' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  html, body {
+    background-color: hsl(var(--background));
+    background-image: url('/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: hsl(var(--foreground));
+    font-family: 'IBM Plex Mono', monospace;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  #root {
+    height: 100%;
+    width: 100%;
   }
 }
 
 @layer components {
   .svg-thin {
-    stroke: black;
+    stroke: white;
     stroke-width: 1;
     fill: none;
   }
 
   .svg-fill-black {
-    fill: black;
+    fill: white;
     stroke: none;
+  }
+
+  /* Cinematic grain overlay utility */
+  .grain-overlay {
+    position: relative;
+  }
+
+  .grain-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: var(--cinematic-grain);
+    opacity: 0.9;
+    pointer-events: none;
+    mix-blend-mode: overlay;
   }
 }
 
@@ -32,6 +93,21 @@
   }
   to {
     stroke-dashoffset: 0;
+  }
+}
+
+@keyframes axonDrawPulse {
+  0% {
+    stroke-dashoffset: var(--path-length); /* Start: dash positioned at beginning of path */
+  }
+  100% {
+    /* End: dash has traveled the ENTIRE path including all branches
+     * CRITICAL: Path includes backtracking segments, so we need a MUCH larger buffer
+     * to ensure the dash travels past ALL visible endpoints (not just the measured path length)
+     * The path is ~437px but includes invisible backtracking, so visible endpoints are shorter
+     * We need to travel: pathLength + dashLength + largeBuffer to clear all endpoints
+     */
+    stroke-dashoffset: calc(0px - var(--dash-length) - 600px); /* Very large buffer to ensure dash travels past ALL endpoints including the last branch (split2) */
   }
 }
 
@@ -57,6 +133,83 @@
   }
 }
 
+@keyframes pulseLight {
+  0%, 100% {
+    filter: brightness(0.9);
+  }
+  50% {
+    filter: brightness(1.1);
+  }
+}
+
+.animate-pulse-light {
+  animation: pulseLight 2s ease-in-out infinite;
+}
+
+/* Calcium imaging-style pulse animation */
+/* Total: 800ms (600ms for reduced motion) - faster decay */
+/* Linear gradient travel from dendrites → soma → axon */
+@keyframes calciumPulseStroke {
+  /* Baseline - white */
+  0% {
+    stroke: #ffffff;
+    stroke-opacity: 0.7;
+  }
+  /* Peak: 80ms (10% of 800ms) - black */
+  10% {
+    stroke: #000000;
+    stroke-opacity: 1;
+  }
+  /* Linear decay from peak - 40% of timeline (320ms) - fast linear fade back to white */
+  40% {
+    stroke: #ffffff;
+    stroke-opacity: 0.7;
+  }
+  /* Continue at baseline - fully white */
+  100% {
+    stroke: #ffffff;
+    stroke-opacity: 0.7;
+  }
+}
+
+@keyframes calciumPulseFill {
+  /* Baseline - white */
+  0% {
+    fill: #ffffff;
+  }
+  /* Peak: 80ms (10% of 800ms) - black */
+  10% {
+    fill: #000000;
+  }
+  /* Linear decay from peak - 40% of timeline (320ms) - fast linear fade back to white */
+  40% {
+    fill: #ffffff;
+  }
+  /* Continue at baseline - fully white */
+  100% {
+    fill: #ffffff;
+  }
+}
+
+@keyframes calciumPulseGlow {
+  /* Baseline */
+  0% {
+    filter: brightness(1) contrast(1);
+  }
+  /* Peak: 80ms (10% of 800ms) - black glow (inverted) */
+  10% {
+    filter: brightness(0.8) contrast(1.1) drop-shadow(0 0 8px rgba(0, 0, 0, 1)) drop-shadow(0 0 16px rgba(0, 0, 0, 0.8));
+  }
+  /* Linear decay from peak - 40% of timeline (320ms) - fast linear fade back */
+  40% {
+    filter: brightness(1) contrast(1);
+  }
+  /* Continue at baseline */
+  100% {
+    filter: brightness(1) contrast(1);
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -79,12 +232,75 @@
   animation: axonDraw var(--conduction-duration, 1500ms) ease-out forwards;
 }
 
+.axon-conduct-pulse {
+  animation: axonDrawPulse var(--conduction-duration, 400ms) linear forwards;
+}
+
+/* Apply animation to all path children in the pulse group */
+.axon-conduct-pulse path {
+  animation: axonDrawPulse var(--conduction-duration, 400ms) linear forwards;
+}
+
 .vesicle {
   animation: vesicle var(--release-duration, 1400ms) ease-out forwards;
 }
 
 .pulse {
   animation: pulseBright 600ms ease-in-out;
+}
+
+/* Calcium imaging pulse - full neuron with propagation */
+/* Linear easing for smooth linear decay back to black */
+.calcium-pulse {
+  animation: calciumPulseGlow var(--calcium-duration, 800ms) linear !important;
+  will-change: filter, opacity;
+}
+
+/* Animate stroke on paths (dendrites, axons) - override all stroke classes with highest specificity */
+.calcium-pulse path.svg-thin,
+.calcium-pulse path[class*="stroke"],
+.calcium-pulse path {
+  animation: calciumPulseStroke var(--calcium-duration, 800ms) linear !important;
+  will-change: stroke, stroke-opacity;
+}
+
+/* Animate fill on circles (soma) - override all fill classes with highest specificity */
+.calcium-pulse circle.svg-fill-black,
+.calcium-pulse circle[class*="fill"],
+.calcium-pulse circle {
+  animation: calciumPulseFill var(--calcium-duration, 800ms) linear !important;
+  will-change: fill;
+}
+
+/* Propagation delays for different regions - smooth gradient travel */
+/* Total propagation time: ~60ms for smooth gradient effect */
+/* Dendrites start first, then soma (which visually covers them), then axon */
+.calcium-pulse-dendrites {
+  animation-delay: 0ms;
+}
+.calcium-pulse-dendrites path {
+  animation-delay: 0ms !important;
+}
+
+.calcium-pulse-soma {
+  animation-delay: 15ms; /* Soma starts slightly after dendrites begin - creates smooth gradient */
+}
+.calcium-pulse-soma circle {
+  animation-delay: 15ms !important;
+}
+
+.calcium-pulse-axon {
+  animation-delay: 35ms; /* Axon starts as soma is reaching peak */
+}
+.calcium-pulse-axon path {
+  animation-delay: 35ms !important;
+}
+
+.calcium-pulse-bouton {
+  animation-delay: 50ms; /* Bouton at the end of the gradient */
+}
+.calcium-pulse-bouton path {
+  animation-delay: 50ms !important;
 }
 
 .fade-in {
@@ -107,5 +323,10 @@
   
   .pulse {
     animation-duration: 300ms;
+  }
+  
+  /* Shorten decay for reduced motion */
+  .calcium-pulse {
+    --calcium-duration: 600ms; /* Reduced from 800ms */
   }
 }

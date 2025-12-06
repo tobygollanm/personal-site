@@ -4,6 +4,7 @@ export type NeuronGraphicHandle = {
   conduct: () => void
   release: () => void
   pulseRegion: (r: 'soma' | 'apical' | 'basalL' | 'basalR' | 'axon') => void
+  pulseCalcium: (duration: number) => void
 }
 
 type NeuronGraphicProps = {
@@ -161,8 +162,8 @@ const generateDendriteTree = (
 ) => {
   const paths: string[] = []
   
-  // Vary the number of primary dendrites (3-8)
-  const numPrimaryDendrites = 3 + (pattern * 2) % 6
+  // Vary the number of primary dendrites (5-10 for more dendrites)
+  const numPrimaryDendrites = 5 + (pattern * 2) % 6
   
   // Base angle ranges vary by direction and pattern
   let baseAngle: number
@@ -252,6 +253,48 @@ const NeuronGraphic = forwardRef<NeuronGraphicHandle, NeuronGraphicProps>(
           group.classList.add('pulse')
         }
       },
+      pulseCalcium: (duration: number) => {
+        // Remove all calcium pulse classes first
+        Object.values(regionGroupsRef.current).forEach((group) => {
+          if (group) {
+            group.classList.remove('calcium-pulse', 'calcium-pulse-dendrites', 'calcium-pulse-soma', 'calcium-pulse-axon', 'calcium-pulse-bouton')
+            group.style.removeProperty('--calcium-duration')
+          }
+        })
+        
+        // Force reflow to ensure classes are removed
+        void document.body.offsetHeight
+        
+        // Use requestAnimationFrame to ensure animation restarts
+        requestAnimationFrame(() => {
+          // Apply calcium pulse with propagation delays
+          // Dendrites (basalL, basalR, apical) → soma → axon → bouton
+          const dendriteGroups = [
+            regionGroupsRef.current.basalL,
+            regionGroupsRef.current.basalR,
+            regionGroupsRef.current.apical,
+          ].filter(Boolean) as SVGGElement[]
+          
+          dendriteGroups.forEach((group) => {
+            group.style.setProperty('--calcium-duration', `${duration}ms`)
+            group.classList.add('calcium-pulse', 'calcium-pulse-dendrites')
+            // Force reflow to ensure animation starts
+            void group.getBoundingClientRect()
+          })
+          
+          if (regionGroupsRef.current.soma) {
+            regionGroupsRef.current.soma.style.setProperty('--calcium-duration', `${duration}ms`)
+            regionGroupsRef.current.soma.classList.add('calcium-pulse', 'calcium-pulse-soma')
+            void regionGroupsRef.current.soma.getBoundingClientRect()
+          }
+          
+          if (regionGroupsRef.current.axon) {
+            regionGroupsRef.current.axon.style.setProperty('--calcium-duration', `${duration}ms`)
+            regionGroupsRef.current.axon.classList.add('calcium-pulse', 'calcium-pulse-axon')
+            void regionGroupsRef.current.axon.getBoundingClientRect()
+          }
+        })
+      },
     }))
 
     const isHorizontal = orientation === 'horizontal-up' || orientation === 'horizontal-down'
@@ -322,14 +365,11 @@ const NeuronGraphic = forwardRef<NeuronGraphicHandle, NeuronGraphicProps>(
             </linearGradient>
           </defs>
 
-          <g ref={(el) => (regionGroupsRef.current.soma = el)} data-region="soma">
-            <circle cx={somaX} cy={somaY} r="6" className="svg-fill-black" />
-          </g>
-
+          {/* Render dendrites first (behind soma) */}
           <g
             ref={(el) => (regionGroupsRef.current.basalL = el)}
             data-region="basalL"
-            className="svg-thin stroke-black/70"
+            className="svg-thin stroke-white/70"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -342,7 +382,7 @@ const NeuronGraphic = forwardRef<NeuronGraphicHandle, NeuronGraphicProps>(
           <g
             ref={(el) => (regionGroupsRef.current.basalR = el)}
             data-region="basalR"
-            className="svg-thin stroke-black/70"
+            className="svg-thin stroke-white/70"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -355,7 +395,7 @@ const NeuronGraphic = forwardRef<NeuronGraphicHandle, NeuronGraphicProps>(
           <g
             ref={(el) => (regionGroupsRef.current.apical = el)}
             data-region="apical"
-            className="svg-thin stroke-black/70"
+            className="svg-thin stroke-white/70"
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -363,6 +403,10 @@ const NeuronGraphic = forwardRef<NeuronGraphicHandle, NeuronGraphicProps>(
             {upDendrites.map((path, i) => (
               <path key={`up-${i}`} d={path} />
             ))}
+          </g>
+
+          {/* Soma removed */}
+          <g ref={(el) => (regionGroupsRef.current.soma = el)} data-region="soma">
           </g>
 
           <g ref={(el) => (regionGroupsRef.current.axon = el)} data-region="axon">
@@ -378,7 +422,7 @@ const NeuronGraphic = forwardRef<NeuronGraphicHandle, NeuronGraphicProps>(
                 <path
                   key={`axon-base-${i}`}
                   d={segment.path}
-                  className="svg-thin stroke-black/70"
+                  className="svg-thin stroke-white/70"
                   strokeWidth={avgWidth}
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -426,10 +470,7 @@ const NeuronGraphic = forwardRef<NeuronGraphicHandle, NeuronGraphicProps>(
           </linearGradient>
         </defs>
 
-        <g ref={(el) => (regionGroupsRef.current.soma = el)} data-region="soma">
-          <circle cx={somaX} cy={somaY} r="6" className="svg-fill-black" />
-        </g>
-
+        {/* Render dendrites first (behind soma) */}
         <g
           ref={(el) => (regionGroupsRef.current.basalL = el)}
           data-region="basalL"
@@ -454,6 +495,11 @@ const NeuronGraphic = forwardRef<NeuronGraphicHandle, NeuronGraphicProps>(
           className="svg-thin"
         >
           <path d={`M ${somaX} ${somaY} L ${somaX} ${somaY * 0.5}`} className="svg-thin" />
+        </g>
+
+        {/* Render soma after dendrites so it appears on top (covers dendrites behind it) */}
+        <g ref={(el) => (regionGroupsRef.current.soma = el)} data-region="soma">
+          <circle cx={somaX} cy={somaY} r="6" className="svg-fill-white" />
         </g>
 
         <g ref={(el) => (regionGroupsRef.current.axon = el)} data-region="axon">
