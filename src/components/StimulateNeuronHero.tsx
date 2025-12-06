@@ -752,11 +752,11 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
         {/* Mobile portrait layout: flex column - name at top, neuron centered */}
         {isMobile && !isLandscape && (
           <div className="flex flex-col h-full">
-            {/* Name text - top, left aligned, each word on its own line, 2x bigger, 15px lower */}
+            {/* Name text - top, left aligned, each word on its own line, 70% of current size */}
             <h1 
               className="font-normal text-foreground uppercase"
               style={{ 
-                fontSize: 'clamp(3.9rem, 10.4vw, 6.5rem)', // 2x bigger (1.95*2 = 3.9, 5.2*2 = 10.4, 3.25*2 = 6.5)
+                fontSize: 'clamp(2.73rem, 7.28vw, 4.55rem)', // 70% of current (3.9*0.7=2.73, 10.4*0.7=7.28, 6.5*0.7=4.55)
                 lineHeight: '1.2',
                 letterSpacing: '0.05em',
                 paddingTop: '35px', // 20px + 15px = 35px
@@ -771,11 +771,11 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
               TOBY<br />GOLLAN<br />MYERS
             </h1>
             
-            {/* Neuron - centered in remaining space, 1.6x bigger */}
-            <div className="flex-1 flex items-center justify-center">
+            {/* Neuron - centered in remaining space, 1.92x bigger (1.6 * 1.2), moved up 40px */}
+            <div className="flex-1 flex items-center justify-center" style={{ marginTop: '-40px' }}>
               <div 
                 id="mobile-neuron-container"
-                style={{ transform: 'scale(1.6)', transformOrigin: 'center' }}
+                style={{ transform: 'scale(1.92)', transformOrigin: 'center' }} // 1.6 * 1.2 = 1.92 (20% larger)
               >
                 <NeuronModule
                   phase={phase}
@@ -830,10 +830,10 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
           const svgElement = svgRef.current
           if (!svgElement) return null
           
-          // Check if parent has mobile scale transform (1.6x) - only on mobile portrait
+          // Check if parent has mobile scale transform (1.92x) - only on mobile portrait
           const container = document.getElementById('mobile-neuron-container')
           const isMobilePortrait = container !== null
-          const mobileScale = isMobilePortrait ? 1.6 : 1
+          const mobileScale = isMobilePortrait ? 1.92 : 1 // Updated to 1.92 (20% larger than 1.6)
           
           const svgRect = svgElement.getBoundingClientRect()
           const svgViewBoxWidth = 850
