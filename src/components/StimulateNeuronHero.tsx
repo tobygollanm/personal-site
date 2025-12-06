@@ -551,11 +551,29 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
 
     // Touch event handlers for mobile devices
     const handleTouchStart = (e: TouchEvent) => {
+      // Check if touch is within the intro section
+      const sectionEl = introContainerRef.current
+      if (!sectionEl) return
+      
+      const touch = e.touches[0]
+      if (!touch) return
+      
+      const sectionRect = sectionEl.getBoundingClientRect()
+      const touchX = touch.clientX
+      const touchY = touch.clientY
+      
+      // Only handle if touch is within the intro section bounds
+      if (touchX < sectionRect.left || touchX > sectionRect.right || 
+          touchY < sectionRect.top || touchY > sectionRect.bottom) {
+        return
+      }
+      
       // Only handle if we're on the intro page (before slide)
-      if (phase === 'release' || phase === 'reveal') return
+      const currentPhase = phase
+      if (currentPhase === 'release' || currentPhase === 'reveal') return
       
       // Ensure firing phase is active
-      if (phase === 'idle') {
+      if (currentPhase === 'idle') {
         setPhase('firing')
       }
       
@@ -610,18 +628,25 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       }
     }
 
-    // Add CSS to prevent touch actions on the section
+    // Add CSS to prevent touch actions on the section - CRITICAL for mobile
     section.style.touchAction = 'none'
     section.style.webkitUserSelect = 'none'
     section.style.userSelect = 'none'
+    section.style.overscrollBehavior = 'none'
+    section.style.webkitOverflowScrolling = 'touch'
     // Prevent iOS callout menu
     ;(section.style as any).webkitTouchCallout = 'none'
 
     // Add event listeners with capture phase for better mobile handling
+    // Use document.body for touch events to catch all touches on mobile
+    const touchTarget = typeof window !== 'undefined' && 'ontouchstart' in window ? document.body : section
+    
     section.addEventListener('wheel', handleWheel, { passive: false })
-    section.addEventListener('touchstart', handleTouchStart, { passive: false, capture: true })
-    section.addEventListener('touchmove', handleTouchMove, { passive: false, capture: true })
-    section.addEventListener('touchend', handleTouchEnd, { passive: false, capture: true })
+    
+    // For mobile, attach to document.body to ensure we catch all touches
+    touchTarget.addEventListener('touchstart', handleTouchStart, { passive: false, capture: true })
+    touchTarget.addEventListener('touchmove', handleTouchMove, { passive: false, capture: true })
+    touchTarget.addEventListener('touchend', handleTouchEnd, { passive: false, capture: true })
     
     // Initialize animation immediately when paths are ready (after event listener is set up)
     if (phase === 'firing' && topBranchPathRef.current && bottomBranchPathRef.current) {
@@ -635,9 +660,10 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
     
     return () => {
       section.removeEventListener('wheel', handleWheel)
-      section.removeEventListener('touchstart', handleTouchStart, { capture: true } as EventListenerOptions)
-      section.removeEventListener('touchmove', handleTouchMove, { capture: true } as EventListenerOptions)
-      section.removeEventListener('touchend', handleTouchEnd, { capture: true } as EventListenerOptions)
+      const touchTarget = typeof window !== 'undefined' && 'ontouchstart' in window ? document.body : section
+      touchTarget.removeEventListener('touchstart', handleTouchStart, { capture: true } as EventListenerOptions)
+      touchTarget.removeEventListener('touchmove', handleTouchMove, { capture: true } as EventListenerOptions)
+      touchTarget.removeEventListener('touchend', handleTouchEnd, { capture: true } as EventListenerOptions)
     }
   }, [phase, updateScrollProgress, initializeScrollPath, neuronRef])
 
@@ -687,6 +713,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
     <section 
       ref={introContainerRef}
       className="relative w-full h-screen text-foreground overflow-hidden"
+      style={{ touchAction: 'none', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'none' } as React.CSSProperties}
     >
       
       {/* Fixed content - stays in viewport */}
