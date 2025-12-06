@@ -159,11 +159,20 @@ export default function Home() {
                     }
                   `}} />
                 {/* Home Section */}
-                <section id="about" className="min-h-screen flex flex-col justify-center py-8 md:py-12" style={{ marginTop: '-20px' }}>
+                <section id="about" className="min-h-screen flex flex-col justify-center py-4 md:py-6" style={{ marginTop: '-20px' }}>
                 {/* Image Slideshow */}
                 <div className="mb-6 md:mb-8" style={{ marginBottom: 'calc(1.5rem + 10px)' }}>
-                  {/* Mobile: 70% width, Desktop: full width */}
-                  <div style={{ width: '70%', margin: '0 auto' }} className="md:w-full md:m-0">
+                  {/* Mobile: 70% width shrunk by 15%, Desktop: 85% width - shrunk by 15% */}
+                  <div className="slideshow-container" style={{ width: '70%', margin: '0 auto', transform: 'scale(0.85)' }}>
+                    <style dangerouslySetInnerHTML={{__html: `
+                      @media (min-width: 768px) {
+                        .slideshow-container {
+                          width: 85% !important;
+                          margin: 0 auto !important;
+                          transform: scale(0.85) !important;
+                        }
+                      }
+                    `}} />
                     <ImageSlideshow
                       images={[
                         { type: 'video', src: `${import.meta.env.BASE_URL}images/about/slide3.mp4` },
@@ -198,7 +207,7 @@ export default function Home() {
               </section>
 
               {/* Projects Section */}
-              <section id="research" className="min-h-screen flex flex-col justify-center py-8 md:py-12">
+              <section id="research" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
                 <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Projects</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <ul className="list-disc list-inside space-y-2">
@@ -211,7 +220,7 @@ export default function Home() {
               </section>
 
               {/* Neurotech Section */}
-              <section id="neurotech" className="min-h-screen flex flex-col justify-center py-8 md:py-12">
+              <section id="neurotech" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
                 <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Neurotech</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
@@ -228,7 +237,7 @@ export default function Home() {
               </section>
 
               {/* Writing Section */}
-              <section id="writing" className="min-h-screen flex flex-col justify-center py-8 md:py-12">
+              <section id="writing" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
                 <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Writing</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
@@ -264,7 +273,7 @@ export default function Home() {
               </section>
 
               {/* Other Stuff Section */}
-              <section id="misc" className="min-h-screen flex flex-col justify-center py-8 md:py-12">
+              <section id="misc" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
                 <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Other stuff I do (hard to keep track)</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <ul className="list-disc list-inside space-y-2">
