@@ -147,7 +147,7 @@ export default function Home() {
             </div>
             
             {/* Main content - scrollable area with all sections */}
-            <div className="flex-1 overflow-y-auto overflow-x-hidden main-content-scrollable flex flex-col">
+            <div className="flex-1 overflow-y-auto overflow-x-hidden main-content-scrollable flex flex-col" style={{ paddingBottom: '30px' }}>
               <div className="flex-1">
                 <div className="max-w-3xl mx-auto main-content-wrapper" style={{ padding: '1rem', paddingLeft: '12.8px', marginTop: '-35px' }}>
                   <style dangerouslySetInnerHTML={{__html: `
