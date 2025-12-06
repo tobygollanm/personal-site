@@ -43,6 +43,11 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
 
   const firingIntervalRef = useRef<number | null>(null)
 
+  // Touch state refs (persist across renders)
+  const touchStartYRef = useRef<number>(0)
+  const touchStartScrollPosRef = useRef<number>(0)
+  const isTouchActiveRef = useRef<boolean>(false)
+
   // Simple seeded random for deterministic cloud pattern
   const seeded = (seed: number) => {
     const x = Math.sin(seed) * 10000
@@ -490,6 +495,11 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
     const scrollDistanceForFullAnimation = 250
 
     const updateAnimation = (scrollPos: number) => {
+      // Ensure we're in firing phase before updating
+      if (phase === 'idle') {
+        setPhase('firing')
+      }
+      
       // Update animation during firing phase (no scroll required to start)
       if (phase === 'firing') {
         // Map scroll position to progress (0-1)
@@ -540,30 +550,39 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
     }
 
     // Touch event handlers for mobile devices
-    let touchStartY = 0
-    let touchStartScrollPos = 0
-    let isTouchActive = false
-
     const handleTouchStart = (e: TouchEvent) => {
       // Only handle if we're on the intro page (before slide)
       if (phase === 'release' || phase === 'reveal') return
       
+      // Ensure firing phase is active
+      if (phase === 'idle') {
+        setPhase('firing')
+      }
+      
       if (e.touches.length === 1) {
-        touchStartY = e.touches[0].clientY
-        touchStartScrollPos = scrollPositionRef.current
-        isTouchActive = true
-        // Prevent default to avoid page scrolling
+        touchStartYRef.current = e.touches[0].clientY
+        touchStartScrollPosRef.current = scrollPositionRef.current
+        isTouchActiveRef.current = true
+        // Prevent default to avoid page scrolling and browser gestures
         e.preventDefault()
         e.stopPropagation()
       }
     }
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (!isTouchActive || phase === 'release' || phase === 'reveal') return
+      const currentPhase = phase
+      if (!isTouchActiveRef.current || currentPhase === 'release' || currentPhase === 'reveal') {
+        return
+      }
+      
+      // Ensure firing phase is active
+      if (currentPhase === 'idle') {
+        setPhase('firing')
+      }
       
       if (e.touches.length === 1) {
         const touchY = e.touches[0].clientY
-        const deltaY = touchStartY - touchY // Inverted: swipe up = positive delta
+        const deltaY = touchStartYRef.current - touchY // Inverted: swipe up = positive delta
         
         // Convert touch delta to scroll delta (scale factor for sensitivity)
         // Touch scroll is typically less sensitive than wheel, so we scale it up
@@ -571,31 +590,38 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
         const scrollDelta = deltaY * touchScaleFactor
         
         // Update scroll position (virtual scroll) - clamp to animation completion distance
-        scrollPositionRef.current = Math.max(0, Math.min(300, touchStartScrollPos + scrollDelta))
+        scrollPositionRef.current = Math.max(0, Math.min(300, touchStartScrollPosRef.current + scrollDelta))
         
         // Update animation based on virtual scroll position
         updateAnimation(scrollPositionRef.current)
         
-        // Prevent default to avoid page scrolling
+        // Prevent default to avoid page scrolling and browser gestures
         e.preventDefault()
         e.stopPropagation()
       }
     }
 
     const handleTouchEnd = (e: TouchEvent) => {
-      isTouchActive = false
+      isTouchActiveRef.current = false
       // Update touch start position for next gesture
       if (e.changedTouches.length === 1) {
-        touchStartY = e.changedTouches[0].clientY
-        touchStartScrollPos = scrollPositionRef.current
+        touchStartYRef.current = e.changedTouches[0].clientY
+        touchStartScrollPosRef.current = scrollPositionRef.current
       }
     }
 
-    // Add event listeners
+    // Add CSS to prevent touch actions on the section
+    section.style.touchAction = 'none'
+    section.style.webkitUserSelect = 'none'
+    section.style.userSelect = 'none'
+    // Prevent iOS callout menu
+    ;(section.style as any).webkitTouchCallout = 'none'
+
+    // Add event listeners with capture phase for better mobile handling
     section.addEventListener('wheel', handleWheel, { passive: false })
-    section.addEventListener('touchstart', handleTouchStart, { passive: false })
-    section.addEventListener('touchmove', handleTouchMove, { passive: false })
-    section.addEventListener('touchend', handleTouchEnd, { passive: false })
+    section.addEventListener('touchstart', handleTouchStart, { passive: false, capture: true })
+    section.addEventListener('touchmove', handleTouchMove, { passive: false, capture: true })
+    section.addEventListener('touchend', handleTouchEnd, { passive: false, capture: true })
     
     // Initialize animation immediately when paths are ready (after event listener is set up)
     if (phase === 'firing' && topBranchPathRef.current && bottomBranchPathRef.current) {
@@ -609,9 +635,9 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
     
     return () => {
       section.removeEventListener('wheel', handleWheel)
-      section.removeEventListener('touchstart', handleTouchStart)
-      section.removeEventListener('touchmove', handleTouchMove)
-      section.removeEventListener('touchend', handleTouchEnd)
+      section.removeEventListener('touchstart', handleTouchStart, { capture: true } as EventListenerOptions)
+      section.removeEventListener('touchmove', handleTouchMove, { capture: true } as EventListenerOptions)
+      section.removeEventListener('touchend', handleTouchEnd, { capture: true } as EventListenerOptions)
     }
   }, [phase, updateScrollProgress, initializeScrollPath, neuronRef])
 
