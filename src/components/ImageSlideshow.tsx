@@ -106,7 +106,8 @@ export default function ImageSlideshow({
       className={`relative w-full ${className}`} 
       style={{ 
         height: '400px', 
-        maxHeight: '70vh'
+        maxHeight: '70vh',
+        paddingBottom: '10px' // Add 10px spacer below slideshow (after caption)
       }}
     >
       {/* Caption text - positioned below slides, centered */}
@@ -123,7 +124,6 @@ export default function ImageSlideshow({
             zIndex: 30,
             pointerEvents: 'none',
             textAlign: 'center',
-            paddingBottom: '10px', // Add 10px spacer below caption
           }}
         >
           <span>{currentLabel.text}</span>
