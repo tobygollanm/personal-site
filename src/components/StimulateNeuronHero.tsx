@@ -858,7 +858,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
           
           // Peptide start position in SVG coordinates (including transform)
           const peptideXInSvg = generateLightningAxon.peptideStartX + 95 // Add transform offset
-          const peptideYInSvg = generateLightningAxon.peptideStartY + 3 // Add 3px offset to align with bouton (was appearing a few pixels above)
+          const peptideYInSvg = generateLightningAxon.peptideStartY + 8 // Add 8px offset to align with bouton (was appearing 5px above)
           
           // Convert to viewport coordinates
           // On mobile portrait, we need to account for the container's scale transform
