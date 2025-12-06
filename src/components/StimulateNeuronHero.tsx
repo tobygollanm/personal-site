@@ -720,33 +720,40 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         {/* Mobile layout: flex column - name at top, neuron centered */}
         <div className="flex flex-col md:hidden h-full">
-          {/* Name text - top */}
-          <h1 
-            className="font-normal text-foreground uppercase"
+          {/* Name text - top, moved down 40px, 3 lines, centered */}
+          <div 
+            className="w-full"
             style={{ 
-              fontSize: 'clamp(1.95rem, 5.2vw, 3.25rem)',
-              lineHeight: '1.2',
-              letterSpacing: '0.05em',
-              paddingTop: '20px',
-              paddingLeft: '25px',
-              paddingRight: '25px',
+              paddingTop: '60px', // 20px original + 40px = 60px
               zIndex: 10,
-              width: '100%',
-              textAlign: 'left'
+              textAlign: 'center'
             }}
           >
-            TOBY GOLLAN MYERS
-          </h1>
+            <h1 
+              className="font-normal text-foreground uppercase"
+              style={{ 
+                fontSize: 'clamp(1.95rem, 5.2vw, 3.25rem)',
+                lineHeight: '1.2',
+                letterSpacing: '0.05em',
+                margin: 0,
+                padding: 0
+              }}
+            >
+              TOBY<br />GOLLAN<br />MYERS
+            </h1>
+          </div>
           
-          {/* Neuron - centered in remaining space */}
+          {/* Neuron - centered in remaining space, 2x size */}
           <div className="flex-1 flex items-center justify-center">
-            <NeuronModule
-              phase={phase}
-              neuronRef={neuronRef}
-              dots={dots}
-              generateLightningAxon={generateLightningAxon}
-              svgRef={svgRef}
-            />
+            <div style={{ transform: 'scale(2)', transformOrigin: 'center' }}>
+              <NeuronModule
+                phase={phase}
+                neuronRef={neuronRef}
+                dots={dots}
+                generateLightningAxon={generateLightningAxon}
+                svgRef={svgRef}
+              />
+            </div>
           </div>
         </div>
         
