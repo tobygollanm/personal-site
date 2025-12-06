@@ -480,7 +480,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
     }
   }, [phase, initializeScrollPath, updateScrollProgress])
 
-  // Handle wheel events directly - no DOM scrolling
+  // Handle wheel events (desktop) and touch events (mobile) directly - no DOM scrolling
   useEffect(() => {
     const section = introContainerRef.current
     if (!section) return
@@ -539,7 +539,63 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       updateAnimation(scrollPositionRef.current)
     }
 
+    // Touch event handlers for mobile devices
+    let touchStartY = 0
+    let touchStartScrollPos = 0
+    let isTouchActive = false
+
+    const handleTouchStart = (e: TouchEvent) => {
+      // Only handle if we're on the intro page (before slide)
+      if (phase === 'release' || phase === 'reveal') return
+      
+      if (e.touches.length === 1) {
+        touchStartY = e.touches[0].clientY
+        touchStartScrollPos = scrollPositionRef.current
+        isTouchActive = true
+        // Prevent default to avoid page scrolling
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isTouchActive || phase === 'release' || phase === 'reveal') return
+      
+      if (e.touches.length === 1) {
+        const touchY = e.touches[0].clientY
+        const deltaY = touchStartY - touchY // Inverted: swipe up = positive delta
+        
+        // Convert touch delta to scroll delta (scale factor for sensitivity)
+        // Touch scroll is typically less sensitive than wheel, so we scale it up
+        const touchScaleFactor = 1.5
+        const scrollDelta = deltaY * touchScaleFactor
+        
+        // Update scroll position (virtual scroll) - clamp to animation completion distance
+        scrollPositionRef.current = Math.max(0, Math.min(300, touchStartScrollPos + scrollDelta))
+        
+        // Update animation based on virtual scroll position
+        updateAnimation(scrollPositionRef.current)
+        
+        // Prevent default to avoid page scrolling
+        e.preventDefault()
+        e.stopPropagation()
+      }
+    }
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      isTouchActive = false
+      // Update touch start position for next gesture
+      if (e.changedTouches.length === 1) {
+        touchStartY = e.changedTouches[0].clientY
+        touchStartScrollPos = scrollPositionRef.current
+      }
+    }
+
+    // Add event listeners
     section.addEventListener('wheel', handleWheel, { passive: false })
+    section.addEventListener('touchstart', handleTouchStart, { passive: false })
+    section.addEventListener('touchmove', handleTouchMove, { passive: false })
+    section.addEventListener('touchend', handleTouchEnd, { passive: false })
     
     // Initialize animation immediately when paths are ready (after event listener is set up)
     if (phase === 'firing' && topBranchPathRef.current && bottomBranchPathRef.current) {
@@ -553,6 +609,9 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
     
     return () => {
       section.removeEventListener('wheel', handleWheel)
+      section.removeEventListener('touchstart', handleTouchStart)
+      section.removeEventListener('touchmove', handleTouchMove)
+      section.removeEventListener('touchend', handleTouchEnd)
     }
   }, [phase, updateScrollProgress, initializeScrollPath, neuronRef])
 

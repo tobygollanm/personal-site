@@ -120,7 +120,7 @@ export default function Home() {
               </div>
               
               {/* Mobile version - horizontal header */}
-              <div className="flex md:hidden items-center justify-center w-full py-2" style={{ gap: '48px' }}>
+              <div className="flex md:hidden items-center justify-center w-full py-2" style={{ gap: '24px' }}>
                 <h1 className="font-normal text-foreground uppercase text-lg tracking-wider whitespace-nowrap" style={{ transform: 'scale(1.2)', transformOrigin: 'left center' }}>
                   TOBY GOLLAN-MYERS
                 </h1>
