@@ -720,19 +720,19 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         {/* Mobile layout: flex column - name at top, neuron centered */}
         <div className="flex flex-col md:hidden h-full">
-          {/* Name text - top, centered, each word on its own line */}
+          {/* Name text - top, left aligned, each word on its own line, 2x bigger, 15px lower */}
           <h1 
             className="font-normal text-foreground uppercase"
             style={{ 
-              fontSize: 'clamp(1.95rem, 5.2vw, 3.25rem)',
+              fontSize: 'clamp(3.9rem, 10.4vw, 6.5rem)', // 2x bigger (1.95*2 = 3.9, 5.2*2 = 10.4, 3.25*2 = 6.5)
               lineHeight: '1.2',
               letterSpacing: '0.05em',
-              paddingTop: '20px',
+              paddingTop: '35px', // 20px + 15px = 35px
               paddingLeft: '25px',
               paddingRight: '25px',
               zIndex: 10,
               width: '100%',
-              textAlign: 'center',
+              textAlign: 'left', // Left margin justified
               margin: 0
             }}
           >
@@ -741,7 +741,10 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
           
           {/* Neuron - centered in remaining space, 1.6x bigger */}
           <div className="flex-1 flex items-center justify-center">
-            <div style={{ transform: 'scale(1.6)', transformOrigin: 'center' }}>
+            <div 
+              id="mobile-neuron-container"
+              style={{ transform: 'scale(1.6)', transformOrigin: 'center' }}
+            >
               <NeuronModule
                 phase={phase}
                 neuronRef={neuronRef}
@@ -792,21 +795,74 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
           const svgElement = svgRef.current
           if (!svgElement) return null
           
+          // Check if parent has mobile scale transform (1.6x)
+          const container = document.getElementById('mobile-neuron-container')
+          const isMobile = container !== null
+          const mobileScale = isMobile ? 1.6 : 1
+          
           const svgRect = svgElement.getBoundingClientRect()
           const svgViewBoxWidth = 850
           const svgViewBoxHeight = 400
           
           // Calculate scale factors
-          const scaleX = svgRect.width / svgViewBoxWidth
-          const scaleY = svgRect.height / svgViewBoxHeight
+          // On mobile, getBoundingClientRect() returns scaled size, so we need to get actual SVG size
+          const actualSvgWidth = svgRect.width / mobileScale
+          const actualSvgHeight = svgRect.height / mobileScale
+          const scaleX = actualSvgWidth / svgViewBoxWidth
+          const scaleY = actualSvgHeight / svgViewBoxHeight
           
           // Peptide start position in SVG coordinates (including transform)
           const peptideXInSvg = generateLightningAxon.peptideStartX + 95 // Add transform offset
           const peptideYInSvg = generateLightningAxon.peptideStartY + 0
           
           // Convert to viewport coordinates
-          const peptideXInViewport = svgRect.left + (peptideXInSvg * scaleX)
-          const peptideYInViewport = svgRect.top + (peptideYInSvg * scaleY)
+          // On mobile, we need to account for the container's scale transform
+          if (isMobile && container) {
+            const containerRect = container.getBoundingClientRect()
+            const containerCenterX = containerRect.left + containerRect.width / 2
+            const containerCenterY = containerRect.top + containerRect.height / 2
+            
+            // SVG's center in its own coordinate system
+            const svgCenterXInSvg = svgViewBoxWidth / 2
+            const svgCenterYInSvg = svgViewBoxHeight / 2
+            
+            // Peptide position relative to SVG center
+            const relativeX = (peptideXInSvg - svgCenterXInSvg) * scaleX
+            const relativeY = (peptideYInSvg - svgCenterYInSvg) * scaleY
+            
+            // Apply mobile scale and position relative to container center
+            const peptideXInViewport = containerCenterX + relativeX * mobileScale
+            const peptideYInViewport = containerCenterY + relativeY * mobileScale
+          } else {
+            // Desktop: original calculation
+            const peptideXInViewport = svgRect.left + (peptideXInSvg * scaleX)
+            const peptideYInViewport = svgRect.top + (peptideYInSvg * scaleY)
+          }
+          
+          let peptideXInViewport: number
+          let peptideYInViewport: number
+          
+          if (isMobile && container) {
+            const containerRect = container.getBoundingClientRect()
+            const containerCenterX = containerRect.left + containerRect.width / 2
+            const containerCenterY = containerRect.top + containerRect.height / 2
+            
+            // SVG's center in its own coordinate system
+            const svgCenterXInSvg = svgViewBoxWidth / 2
+            const svgCenterYInSvg = svgViewBoxHeight / 2
+            
+            // Peptide position relative to SVG center
+            const relativeX = (peptideXInSvg - svgCenterXInSvg) * scaleX
+            const relativeY = (peptideYInSvg - svgCenterYInSvg) * scaleY
+            
+            // Apply mobile scale and position relative to container center
+            peptideXInViewport = containerCenterX + relativeX * mobileScale
+            peptideYInViewport = containerCenterY + relativeY * mobileScale
+          } else {
+            // Desktop: original calculation
+            peptideXInViewport = svgRect.left + (peptideXInSvg * scaleX)
+            peptideYInViewport = svgRect.top + (peptideYInSvg * scaleY)
+          }
           
           return (
             <div
