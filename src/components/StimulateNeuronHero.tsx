@@ -779,14 +779,12 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
               <div 
                 id="mobile-neuron-container"
                 style={{ 
-                  transform: 'scale(1.92)', 
+                  transform: 'scale(1.92) translate(15px, -30px)', 
                   transformOrigin: 'center',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  margin: '0 auto',
-                  marginLeft: '15px',
-                  marginTop: '-30px'
+                  margin: '0 auto'
                 }}
               >
                 <NeuronModule
