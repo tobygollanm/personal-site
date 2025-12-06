@@ -3,6 +3,9 @@ import Layout from './components/Layout'
 import Home from './pages/Home'
 import NeuronsChain from './pages/NeuronsChain'
 
+// Base path for GitHub Pages (empty string for local dev, '/personal-site' for production)
+const basename = import.meta.env.PROD ? '/personal-site' : ''
+
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -35,4 +38,6 @@ export const router = createBrowserRouter([
       },
     ],
   },
-])
+], {
+  basename: basename,
+})
