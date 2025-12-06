@@ -33,7 +33,7 @@
 
   html, body {
     background-color: hsl(var(--background));
-    background-image: url('/images/background.jpg');
+    background-image: var(--bg-image-url);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
