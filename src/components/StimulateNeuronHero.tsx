@@ -774,12 +774,12 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
               TOBY<br />GOLLAN<br />MYERS
             </h1>
             
-            {/* Neuron - centered horizontally and vertically, 1.92x bigger (1.6 * 1.2), moved 15px right and 30px up */}
+            {/* Neuron - centered horizontally and vertically, 1.92x bigger (1.6 * 1.2), moved 15px right and 37px up */}
             <div className="flex-1 flex items-center justify-center w-full" style={{ width: '100vw', margin: 0, padding: 0 }}>
               <div 
                 id="mobile-neuron-container"
                 style={{ 
-                  transform: 'scale(1.92) translate(15px, -30px)', 
+                  transform: 'scale(1.92) translate(15px, -37px)', 
                   transformOrigin: 'center',
                   display: 'flex',
                   justifyContent: 'center',
@@ -858,7 +858,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
           
           // Peptide start position in SVG coordinates (including transform)
           const peptideXInSvg = generateLightningAxon.peptideStartX + 95 // Add transform offset
-          const peptideYInSvg = generateLightningAxon.peptideStartY + 0
+          const peptideYInSvg = generateLightningAxon.peptideStartY + 3 // Add 3px offset to align with bouton (was appearing a few pixels above)
           
           // Convert to viewport coordinates
           // On mobile portrait, we need to account for the container's scale transform
