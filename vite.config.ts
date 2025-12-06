@@ -1,9 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: '/personal-site/', // Base path for GitHub Pages (matches repo name)
+  // Use '/' for local dev, '/personal-site/' for production builds (GitHub Pages)
+  base: command === 'build' ? '/personal-site/' : '/',
   build: {
     rollupOptions: {
       output: {
@@ -16,4 +17,4 @@ export default defineConfig({
     minify: 'esbuild', // Faster default minifier
   },
   assetsInclude: ['**/*.mp4', '**/*.jpg', '**/*.png'],
-})
+}))
