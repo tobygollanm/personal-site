@@ -830,11 +830,11 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                 }
                 @keyframes bounceDesktop {
                   0%, 100% {
-                    transform: translateY(0);
+                    transform: translateX(-50%) translateY(0);
                     opacity: 1;
                   }
                   50% {
-                    transform: translateY(-8px);
+                    transform: translateX(-50%) translateY(-8px);
                     opacity: 0.8;
                   }
                 }
@@ -897,7 +897,6 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                   pointerEvents: 'none',
                   left: '50%',
                   top: 'calc(50% + 30px)',
-                  transform: 'translateX(-50%)',
                   zIndex: 100
                 }}>
                   <span className="text-sm">^^</span>
