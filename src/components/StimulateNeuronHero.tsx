@@ -797,7 +797,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
             <div className="flex-1 flex items-center justify-center w-full relative" style={{ width: '100vw', margin: 0, padding: 0 }}>
               {/* Bouncing swipe indicator - below neuron on mobile intro */}
               <div className="absolute flex items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
-                animation: 'bounce 1.5s ease-in-out infinite',
+                animation: 'bounceUp 1.5s ease-in-out infinite',
                 pointerEvents: 'none',
                 left: '50%',
                 top: 'calc(50% + 120px)',
@@ -814,6 +814,16 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                   }
                   50% {
                     transform: translateX(-50%) translateY(-8px);
+                    opacity: 0.8;
+                  }
+                }
+                @keyframes bounceUp {
+                  0%, 100% {
+                    transform: translateX(-50%) translateY(0);
+                    opacity: 1;
+                  }
+                  50% {
+                    transform: translateX(-50%) translateY(8px);
                     opacity: 0.8;
                   }
                 }
@@ -860,7 +870,21 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
           </h1>
           
           {/* Neuron - centered */}
-          <div className="flex-1 flex items-center justify-center">
+          <div className="flex-1 flex items-center justify-center relative">
+            {/* Bouncing scroll indicator - below neuron on desktop intro */}
+            {!isMobile && (
+              <div className="absolute flex flex-col items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
+                animation: 'bounceUp 1.5s ease-in-out infinite',
+                pointerEvents: 'none',
+                left: '50%',
+                top: 'calc(50% + 120px)',
+                transform: 'translateX(-50%)',
+                zIndex: 100
+              }}>
+                <span>scroll to fire</span>
+                <span className="text-sm">^^</span>
+              </div>
+            )}
             <NeuronModule
               phase={phase}
               neuronRef={neuronRef}
