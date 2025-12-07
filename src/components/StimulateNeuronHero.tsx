@@ -828,6 +828,16 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                     opacity: 0.8;
                   }
                 }
+                @keyframes bounceDesktop {
+                  0%, 100% {
+                    transform: translateY(0);
+                    opacity: 1;
+                  }
+                  50% {
+                    transform: translateY(-8px);
+                    opacity: 0.8;
+                  }
+                }
               `}} />
               <div 
                 id="mobile-neuron-container"
@@ -880,23 +890,23 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                 generateLightningAxon={generateLightningAxon}
                 svgRef={svgRef}
               />
+              {/* Bouncing scroll indicator - 30px below neuron center on desktop intro */}
+              {!isMobile && (
+                <div className="absolute flex items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
+                  animation: 'bounceDesktop 1.5s ease-in-out infinite',
+                  pointerEvents: 'none',
+                  left: '50%',
+                  top: 'calc(50% + 30px)',
+                  transform: 'translateX(-50%)',
+                  zIndex: 100
+                }}>
+                  <span className="text-sm">^^</span>
+                  <span>scroll to fire</span>
+                  <span className="text-sm">^^</span>
+                </div>
+              )}
             </div>
           </div>
-          {/* Bouncing scroll indicator - centered in viewing window on desktop intro */}
-          {!isMobile && (
-            <div className="absolute flex items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
-              animation: 'bounce 1.5s ease-in-out infinite',
-              pointerEvents: 'none',
-              left: '50%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 100
-            }}>
-              <span className="text-sm">^^</span>
-              <span>scroll to fire</span>
-              <span className="text-sm">^^</span>
-            </div>
-          )}
           </>
         )}
       </div>
