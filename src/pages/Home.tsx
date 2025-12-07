@@ -223,6 +223,19 @@ export default function Home() {
                 </div>
               </section>
 
+              {/* Projects Section */}
+              <section id="research" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
+                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Projects</h2>
+                <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
+                  <ul className="list-disc list-inside space-y-2">
+                    <li>Predictive generative mapping of brain regions from limited structural information by fusing structural MRI with a bunch of other measurements. Goal is to eliminate MRI requirements from certain deep-brain neuromod workflows</li>
+                    <li>Simplified neuronavigation systems for at-home neuromodulation</li>
+                    <li>A new method of highly-precise peripheral nerve stimulation for certain types of neuropathic pain.</li>
+                    <li>A few new things in the works that I can't yet post on here.</li>
+                  </ul>
+                </div>
+              </section>
+
               {/* Writing Section */}
               <section id="writing" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
                 <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Writing</h2>
