@@ -237,7 +237,7 @@ export default function ImageSlideshow({
             onClick={goToPrevious}
             className="absolute top-1/2 -translate-y-1/2 z-20 p-2 text-white hover:opacity-70 transition-opacity duration-200"
             aria-label="Previous slide"
-            style={{ left: '-48px' }}
+            style={{ left: '-60px' }}
           >
             <svg
               width="16"
@@ -261,7 +261,7 @@ export default function ImageSlideshow({
             onClick={goToNext}
             className="absolute top-1/2 -translate-y-1/2 z-20 p-2 text-white hover:opacity-70 transition-opacity duration-200"
             aria-label="Next slide"
-            style={{ right: '-48px' }}
+            style={{ right: '-60px' }}
           >
             <svg
               width="16"
