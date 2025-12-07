@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 type MediaItem = {
   type: 'image' | 'video'
@@ -28,6 +28,12 @@ export default function ImageSlideshow({
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const videoLoopCounts = useRef<Map<number, number>>(new Map())
   const slideContainerRef = useRef<HTMLDivElement>(null)
+  
+  // Touch/swipe state for mobile
+  const touchStartXRef = useRef<number>(0)
+  const touchStartYRef = useRef<number>(0)
+  const isSwipingRef = useRef<boolean>(false)
+  const isMobileRef = useRef<boolean>(false)
 
   // Normalize images array to MediaItem format
   const mediaItems: MediaItem[] = images.map((img, index) => {
@@ -61,14 +67,13 @@ export default function ImageSlideshow({
   const currentLabel = getSlideLabel(currentItem.src)
 
   // Navigation functions - manual only (auto-switch removed)
-
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + mediaItems.length) % mediaItems.length)
-  }
+  }, [mediaItems.length])
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % mediaItems.length)
-  }
+  }, [mediaItems.length])
 
   // Handle video playback with 3-loop limit
   useEffect(() => {
@@ -96,6 +101,74 @@ export default function ImageSlideshow({
     })
   }, [currentIndex, mediaItems])
 
+  // Touch/swipe handlers for mobile
+  useEffect(() => {
+    const container = slideContainerRef.current
+    if (!container || mediaItems.length <= 1) return
+
+    // Check if mobile
+    const checkMobile = () => {
+      isMobileRef.current = window.innerWidth < 768
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return
+      const touch = e.touches[0]
+      touchStartXRef.current = touch.clientX
+      touchStartYRef.current = touch.clientY
+      isSwipingRef.current = false
+    }
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return
+      const touch = e.touches[0]
+      const deltaX = touch.clientX - touchStartXRef.current
+      const deltaY = Math.abs(touch.clientY - touchStartYRef.current)
+      
+      // Only consider it a swipe if horizontal movement is greater than vertical
+      if (Math.abs(deltaX) > 10 && Math.abs(deltaX) > deltaY) {
+        isSwipingRef.current = true
+        // Prevent scrolling while swiping
+        e.preventDefault()
+      }
+    }
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (!isSwipingRef.current) return
+      
+      const touch = e.changedTouches[0]
+      if (!touch) return
+      
+      const deltaX = touch.clientX - touchStartXRef.current
+      const swipeThreshold = 50 // Minimum distance for a swipe
+      
+      if (Math.abs(deltaX) > swipeThreshold) {
+        if (deltaX > 0) {
+          // Swipe right - go to previous slide
+          goToPrevious()
+        } else {
+          // Swipe left - go to next slide
+          goToNext()
+        }
+      }
+      
+      isSwipingRef.current = false
+    }
+
+    container.addEventListener('touchstart', handleTouchStart, { passive: false })
+    container.addEventListener('touchmove', handleTouchMove, { passive: false })
+    container.addEventListener('touchend', handleTouchEnd, { passive: false })
+
+    return () => {
+      container.removeEventListener('touchstart', handleTouchStart)
+      container.removeEventListener('touchmove', handleTouchMove)
+      container.removeEventListener('touchend', handleTouchEnd)
+      window.removeEventListener('resize', checkMobile)
+    }
+  }, [mediaItems.length, goToPrevious, goToNext])
+
   if (mediaItems.length === 0) {
     return null
   }
@@ -107,6 +180,7 @@ export default function ImageSlideshow({
       style={{ 
         height: '400px', 
         maxHeight: '70vh',
+        touchAction: 'pan-y pinch-zoom' // Allow vertical scrolling and pinch zoom, but handle horizontal swipes
       }}
     >
       <style dangerouslySetInnerHTML={{__html: `
