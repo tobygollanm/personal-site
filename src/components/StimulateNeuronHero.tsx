@@ -823,7 +823,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                     opacity: 1;
                   }
                   50% {
-                    transform: translateX(-50%) translateY(8px);
+                    transform: translateX(-50%) translateY(-8px);
                     opacity: 0.8;
                   }
                 }
