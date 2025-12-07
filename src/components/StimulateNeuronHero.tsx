@@ -795,17 +795,16 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
             
             {/* Neuron - centered horizontally and vertically, 1.92x bigger (1.6 * 1.2), moved 15px right and 30px up */}
             <div className="flex-1 flex items-center justify-center w-full relative" style={{ width: '100vw', margin: 0, padding: 0 }}>
-              {/* Bouncing swipe indicator - above neuron on mobile intro */}
+              {/* Bouncing swipe indicator - below neuron on mobile intro */}
               <div className="absolute flex items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
                 animation: 'bounce 1.5s ease-in-out infinite',
                 pointerEvents: 'none',
                 left: '50%',
-                top: 'calc(50% - 120px)',
+                top: 'calc(50% + 120px)',
                 transform: 'translateX(-50%)',
                 zIndex: 100
               }}>
-                <span>swipe</span>
-                <span className="text-sm">&gt;&gt;</span>
+                <span>swipe to fire</span>
               </div>
               <style dangerouslySetInnerHTML={{__html: `
                 @keyframes bounce {
