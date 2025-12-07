@@ -854,47 +854,50 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
         
         {/* Desktop and mobile landscape layout: flex row - name on left, neuron centered on right */}
         {(!isMobile || isLandscape) && (
-          <div className="flex items-center justify-between w-full h-full px-8 md:px-16">
-          {/* Name text - left side */}
-          <h1 
-            className="font-normal text-foreground uppercase"
-            style={{ 
-              fontSize: 'clamp(1.95rem, 5.2vw, 3.25rem)',
-              lineHeight: '1.2',
-              letterSpacing: '0.05em',
-              marginTop: '60px',
-              marginLeft: '25px',
-              zIndex: 10
-            }}
-          >
-            TOBY GOLLAN MYERS
-          </h1>
-          
-          {/* Neuron - centered */}
-          <div className="flex-1 flex items-center justify-center relative">
-            {/* Bouncing scroll indicator - below neuron on desktop intro */}
-            {!isMobile && (
-              <div className="absolute flex flex-col items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
-                animation: 'bounceUp 1.5s ease-in-out infinite',
-                pointerEvents: 'none',
-                left: '50%',
-                top: 'calc(50% + 120px)',
-                transform: 'translateX(-50%)',
-                zIndex: 100
-              }}>
-                <span>scroll to fire</span>
-                <span className="text-sm">^^</span>
-              </div>
-            )}
-            <NeuronModule
-              phase={phase}
-              neuronRef={neuronRef}
-              dots={dots}
-              generateLightningAxon={generateLightningAxon}
-              svgRef={svgRef}
-            />
+          <>
+            <div className="flex items-center justify-between w-full h-full px-8 md:px-16">
+            {/* Name text - left side */}
+            <h1 
+              className="font-normal text-foreground uppercase"
+              style={{ 
+                fontSize: 'clamp(1.95rem, 5.2vw, 3.25rem)',
+                lineHeight: '1.2',
+                letterSpacing: '0.05em',
+                marginTop: '60px',
+                marginLeft: '25px',
+                zIndex: 10
+              }}
+            >
+              TOBY GOLLAN MYERS
+            </h1>
+            
+            {/* Neuron - centered */}
+            <div className="flex-1 flex items-center justify-center relative">
+              <NeuronModule
+                phase={phase}
+                neuronRef={neuronRef}
+                dots={dots}
+                generateLightningAxon={generateLightningAxon}
+                svgRef={svgRef}
+              />
+            </div>
           </div>
-        </div>
+          {/* Bouncing scroll indicator - centered in viewing window on desktop intro */}
+          {!isMobile && (
+            <div className="absolute flex items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
+              animation: 'bounce 1.5s ease-in-out infinite',
+              pointerEvents: 'none',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+              zIndex: 100
+            }}>
+              <span className="text-sm">^^</span>
+              <span>scroll to fire</span>
+              <span className="text-sm">^^</span>
+            </div>
+          )}
+          </>
         )}
       </div>
     </section>
