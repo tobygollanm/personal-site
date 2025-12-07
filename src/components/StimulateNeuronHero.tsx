@@ -893,7 +893,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
               {/* Bouncing scroll indicator - 30px below neuron center on desktop intro */}
               {!isMobile && (
                 <div className="absolute flex items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
-                  animation: 'bounceDesktop 1.5s ease-in-out infinite',
+                  animation: 'bounce 1.5s ease-in-out infinite',
                   pointerEvents: 'none',
                   left: '50%',
                   top: 'calc(50% + 30px)',
