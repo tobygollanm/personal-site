@@ -290,7 +290,7 @@ export default function Home() {
                     <li>
                       Play guitar, bass, banjo. Played <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/birchwood.jpg`} type="image">
                         sick shows
-                      </MediaPopup> with 1000+ crowds.
+                      </MediaPopup>.
                     </li>
                     <li>
                       Ceramic mugs made with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're safe to drink from.
