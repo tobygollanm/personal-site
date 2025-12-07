@@ -765,6 +765,17 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       className="relative w-full h-screen text-foreground overflow-hidden"
       style={{ touchAction: 'none', WebkitOverflowScrolling: 'touch', overscrollBehavior: 'none' } as React.CSSProperties}
     >
+      {/* Global keyframes for animations */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes bounceDesktopScroll {
+          0%, 100% {
+            transform: translateX(-50%) translateY(0);
+          }
+          50% {
+            transform: translateX(-50%) translateY(-8px);
+          }
+        }
+      `}} />
       
       {/* Fixed content - stays in viewport */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
@@ -841,11 +852,9 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                 @keyframes bounceDesktopScroll {
                   0%, 100% {
                     transform: translateX(-50%) translateY(0);
-                    opacity: 1;
                   }
                   50% {
                     transform: translateX(-50%) translateY(-8px);
-                    opacity: 0.8;
                   }
                 }
               `}} />
