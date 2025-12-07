@@ -230,39 +230,42 @@ export default function ImageSlideshow({
       })}
       
       {/* Navigation buttons - small, lined, transparent gray */}
-      {mediaItems.length > 1 && (
-        <>
-          {/* Previous button - left side */}
-          <button
-            onClick={goToPrevious}
-            className="absolute top-1/2 -translate-y-1/2 z-20 p-2 text-white hover:opacity-70 transition-opacity duration-200"
-            aria-label="Previous slide"
-            style={{ left: '-60px' }}
-          >
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+      {mediaItems.length > 1 && (() => {
+        const isPortraitSlide = currentItem.src.includes('slide3.mp4')
+        const arrowOffset = isPortraitSlide ? '-60px' : '-64px'
+        return (
+          <>
+            {/* Previous button - left side */}
+            <button
+              onClick={goToPrevious}
+              className="absolute top-1/2 -translate-y-1/2 z-20 p-2 text-white hover:opacity-70 transition-opacity duration-200"
+              aria-label="Previous slide"
+              style={{ left: arrowOffset }}
             >
-              <path
-                d="M10 12L6 8L10 4"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 12L6 8L10 4"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
 
-          {/* Next button - right side */}
-          <button
-            onClick={goToNext}
-            className="absolute top-1/2 -translate-y-1/2 z-20 p-2 text-white hover:opacity-70 transition-opacity duration-200"
-            aria-label="Next slide"
-            style={{ right: '-60px' }}
-          >
+            {/* Next button - right side */}
+            <button
+              onClick={goToNext}
+              className="absolute top-1/2 -translate-y-1/2 z-20 p-2 text-white hover:opacity-70 transition-opacity duration-200"
+              aria-label="Next slide"
+              style={{ right: arrowOffset }}
+            >
             <svg
               width="16"
               height="16"
@@ -279,8 +282,9 @@ export default function ImageSlideshow({
               />
             </svg>
           </button>
-        </>
-      )}
+          </>
+        )
+      })()}
     </div>
   )
 }
