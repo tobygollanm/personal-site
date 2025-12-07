@@ -124,8 +124,30 @@ export default function Home() {
                 <h1 className="font-normal text-foreground uppercase text-lg tracking-wider whitespace-nowrap" style={{ transform: 'scale(1.2)', transformOrigin: 'left center', marginLeft: '5px' }}>
                   TOBY GOLLAN-MYERS
                 </h1>
-                <div style={{ transform: 'scale(1.35375)', transformOrigin: 'center', marginLeft: '30px' }}>
-                  <IntroNeuronLogo size={60} />
+                <div className="relative flex flex-col items-center">
+                  {/* Bouncing swipe indicator */}
+                  <div className="swipe-indicator absolute bottom-full mb-2 flex items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
+                    animation: 'bounce 1.5s ease-in-out infinite',
+                    pointerEvents: 'none'
+                  }}>
+                    <span>swipe</span>
+                    <span className="text-sm">&gt;&gt;</span>
+                  </div>
+                  <style dangerouslySetInnerHTML={{__html: `
+                    @keyframes bounce {
+                      0%, 100% {
+                        transform: translateY(0);
+                        opacity: 1;
+                      }
+                      50% {
+                        transform: translateY(-8px);
+                        opacity: 0.8;
+                      }
+                    }
+                  `}} />
+                  <div style={{ transform: 'scale(1.35375)', transformOrigin: 'center', marginLeft: '30px' }}>
+                    <IntroNeuronLogo size={60} />
+                  </div>
                 </div>
               </div>
             </header>
