@@ -800,7 +800,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
                 animation: 'bounce 1.5s ease-in-out infinite',
                 pointerEvents: 'none',
                 left: '50%',
-                top: 'calc(50% + 40px)',
+                top: 'calc(50% + 0px)',
                 transform: 'translateX(-50%)',
                 zIndex: 100
               }}>
@@ -832,7 +832,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
               <div 
                 id="mobile-neuron-container"
                 style={{ 
-                  transform: 'scale(1.92) translate(15px, -67px)', 
+                  transform: 'scale(1.92) translate(15px, -87px)', 
                   transformOrigin: 'center',
                   display: 'flex',
                   justifyContent: 'center',
