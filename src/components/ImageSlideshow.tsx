@@ -59,6 +59,13 @@ export default function ImageSlideshow({
         fontFamily: '"Caveat", cursive'
       }
     }
+    if (src.includes('slide2.jpg')) {
+      return {
+        text: "a novel method of electrical deep brain stimulation (minimally invasive)",
+        hasArrow: false,
+        fontFamily: '"Caveat", cursive'
+      }
+    }
     // Add labels for other slides if needed
     return null
   }
