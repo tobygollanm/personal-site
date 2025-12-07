@@ -232,7 +232,7 @@ export default function ImageSlideshow({
       {/* Navigation buttons - small, lined, transparent gray */}
       {mediaItems.length > 1 && (() => {
         const isPortraitSlide = currentItem.src.includes('slide3.mp4')
-        const arrowOffset = isPortraitSlide ? '-60px' : '-64px'
+        const arrowOffset = isPortraitSlide ? '-60px' : '-72px'
         return (
           <>
             {/* Previous button - left side */}
