@@ -911,13 +911,13 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
               />
             </div>
           </div>
-          {/* Bouncing scroll indicator - centered horizontally on intro page, 70px below center */}
+          {/* Bouncing scroll indicator - centered horizontally on intro page, 90px below center */}
           {!isMobile && (
             <div className="absolute flex items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
               animation: 'bounceDesktopScroll 1.5s ease-in-out infinite',
               pointerEvents: 'none',
               left: '50%',
-              top: 'calc(50% + 70px)',
+              top: 'calc(50% + 90px)',
               zIndex: 100
             }}>
               <span className="text-sm">^^</span>
