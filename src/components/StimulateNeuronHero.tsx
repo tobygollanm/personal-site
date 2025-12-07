@@ -75,6 +75,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
   const firingIntervalRef = useRef<number | null>(null)
 
   // Touch state refs (persist across renders)
+  const touchStartXRef = useRef<number>(0)
   const touchStartYRef = useRef<number>(0)
   const touchStartScrollPosRef = useRef<number>(0)
   const isTouchActiveRef = useRef<boolean>(false)
@@ -521,9 +522,9 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
     const section = introContainerRef.current
     if (!section) return
 
-    // Use a fixed, small scroll distance so one pull completes the animation
-    // Typical trackpad scroll is ~100-300px, so 250px ensures one pull completes it
-    const scrollDistanceForFullAnimation = 250
+    // Use screen width as the scroll distance for mobile horizontal swipe
+    // Desktop uses 250px for vertical scroll
+    const scrollDistanceForFullAnimation = isMobile ? window.innerWidth : 250
 
     const updateAnimation = (scrollPos: number) => {
       // Ensure we're in firing phase before updating
@@ -531,13 +532,14 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
         setPhase('firing')
       }
       
-      // Update animation during firing phase (no scroll required to start)
+      // Update animation during firing phase - tracks finger position in real-time
       if (phase === 'firing') {
         // Map scroll position to progress (0-1)
-        // Start animation immediately even with scrollPos = 0, but allow scrolling to control speed
-        const progress = Math.min(scrollPos / scrollDistanceForFullAnimation, 1)
+        // For mobile, use screen width as full swipe distance
+        const fullDistance = isMobile ? window.innerWidth : scrollDistanceForFullAnimation
+        const progress = Math.min(scrollPos / fullDistance, 1)
         
-        // Update animation if paths are ready
+        // Update animation if paths are ready - updates in real-time to track finger
         if (topBranchPathRef.current && bottomBranchPathRef.current) {
           updateScrollProgress(progress)
         }
@@ -609,6 +611,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       }
       
       if (e.touches.length === 1) {
+        touchStartXRef.current = e.touches[0].clientX
         touchStartYRef.current = e.touches[0].clientY
         touchStartScrollPosRef.current = scrollPositionRef.current
         isTouchActiveRef.current = true
@@ -630,18 +633,32 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       }
       
       if (e.touches.length === 1) {
+        const touchX = e.touches[0].clientX
         const touchY = e.touches[0].clientY
-        const deltaY = touchStartYRef.current - touchY // Inverted: swipe up = positive delta
         
-        // Convert touch delta to scroll delta (scale factor for sensitivity)
-        // Touch scroll is typically less sensitive than wheel, so we scale it up
-        const touchScaleFactor = 1.5
-        const scrollDelta = deltaY * touchScaleFactor
+        if (isMobile) {
+          // Mobile: use horizontal swipe (left to right)
+          const deltaX = touchX - touchStartXRef.current // Swipe right = positive delta
+          
+          // Use screen width as full swipe distance
+          const screenWidth = window.innerWidth
+          const scrollDelta = deltaX
+          
+          // Update scroll position (virtual scroll) - clamp to animation completion distance
+          scrollPositionRef.current = Math.max(0, Math.min(screenWidth, touchStartScrollPosRef.current + scrollDelta))
+        } else {
+          // Desktop: use vertical scroll
+          const deltaY = touchStartYRef.current - touchY // Inverted: swipe up = positive delta
+          
+          // Convert touch delta to scroll delta (scale factor for sensitivity)
+          const touchScaleFactor = 1.5
+          const scrollDelta = deltaY * touchScaleFactor
+          
+          // Update scroll position (virtual scroll) - clamp to animation completion distance
+          scrollPositionRef.current = Math.max(0, Math.min(300, touchStartScrollPosRef.current + scrollDelta))
+        }
         
-        // Update scroll position (virtual scroll) - clamp to animation completion distance
-        scrollPositionRef.current = Math.max(0, Math.min(300, touchStartScrollPosRef.current + scrollDelta))
-        
-        // Update animation based on virtual scroll position
+        // Update animation based on virtual scroll position - track finger in real-time
         updateAnimation(scrollPositionRef.current)
         
         // Prevent default to avoid page scrolling and browser gestures
@@ -654,6 +671,7 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       isTouchActiveRef.current = false
       // Update touch start position for next gesture
       if (e.changedTouches.length === 1) {
+        touchStartXRef.current = e.changedTouches[0].clientX
         touchStartYRef.current = e.changedTouches[0].clientY
         touchStartScrollPosRef.current = scrollPositionRef.current
       }
