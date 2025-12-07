@@ -522,9 +522,9 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
     const section = introContainerRef.current
     if (!section) return
 
-    // Use screen width as the scroll distance for mobile horizontal swipe
+    // Use screen width / 1.5 as the scroll distance for mobile horizontal swipe (1.5x more sensitive)
     // Desktop uses 250px for vertical scroll
-    const scrollDistanceForFullAnimation = isMobile ? window.innerWidth : 250
+    const scrollDistanceForFullAnimation = isMobile ? window.innerWidth / 1.5 : 250
 
     const updateAnimation = (scrollPos: number) => {
       // Ensure we're in firing phase before updating
@@ -535,8 +535,8 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
       // Update animation during firing phase - tracks finger position in real-time
       if (phase === 'firing') {
         // Map scroll position to progress (0-1)
-        // For mobile, use screen width as full swipe distance
-        const fullDistance = isMobile ? window.innerWidth : scrollDistanceForFullAnimation
+        // For mobile, use screen width / 1.5 as full swipe distance (1.5x more sensitive)
+        const fullDistance = isMobile ? window.innerWidth / 1.5 : scrollDistanceForFullAnimation
         const progress = Math.min(scrollPos / fullDistance, 1)
         
         // Update animation if paths are ready - updates in real-time to track finger
@@ -640,12 +640,13 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
           // Mobile: use horizontal swipe (left to right)
           const deltaX = touchX - touchStartXRef.current // Swipe right = positive delta
           
-          // Use screen width as full swipe distance
+          // Use screen width / 1.5 as full swipe distance (1.5x more sensitive)
           const screenWidth = window.innerWidth
+          const fullSwipeDistance = screenWidth / 1.5
           const scrollDelta = deltaX
           
           // Update scroll position (virtual scroll) - clamp to animation completion distance
-          scrollPositionRef.current = Math.max(0, Math.min(screenWidth, touchStartScrollPosRef.current + scrollDelta))
+          scrollPositionRef.current = Math.max(0, Math.min(fullSwipeDistance, touchStartScrollPosRef.current + scrollDelta))
         } else {
           // Desktop: use vertical scroll
           const deltaY = touchStartYRef.current - touchY // Inverted: swipe up = positive delta
@@ -793,7 +794,29 @@ export default function StimulateNeuronHero({ onDone, onPeptideImpact, onPeptide
             </h1>
             
             {/* Neuron - centered horizontally and vertically, 1.92x bigger (1.6 * 1.2), moved 15px right and 30px up */}
-            <div className="flex-1 flex items-center justify-center w-full" style={{ width: '100vw', margin: 0, padding: 0 }}>
+            <div className="flex-1 flex items-center justify-center w-full relative" style={{ width: '100vw', margin: 0, padding: 0 }}>
+              {/* Bouncing swipe indicator - above neuron on mobile intro */}
+              <div className="absolute bottom-full mb-4 flex items-center gap-1 text-white text-xs font-normal whitespace-nowrap" style={{ 
+                animation: 'bounce 1.5s ease-in-out infinite',
+                pointerEvents: 'none',
+                left: '50%',
+                transform: 'translateX(-50%)'
+              }}>
+                <span>swipe</span>
+                <span className="text-sm">&gt;&gt;</span>
+              </div>
+              <style dangerouslySetInnerHTML={{__html: `
+                @keyframes bounce {
+                  0%, 100% {
+                    transform: translateX(-50%) translateY(0);
+                    opacity: 1;
+                  }
+                  50% {
+                    transform: translateX(-50%) translateY(-8px);
+                    opacity: 0.8;
+                  }
+                }
+              `}} />
               <div 
                 id="mobile-neuron-container"
                 style={{ 
