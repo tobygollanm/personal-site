@@ -250,7 +250,7 @@ export default function Home() {
                             <li>High risk tolerance (willing to make big bets and get back up after I fall)</li>
                             <li>Putting ego aside and admitting when wrong (I've been embarrassed enough times that this comes much more easily these days)</li>
                             <li>Strong desire to work with people, and a love of socializing/making connections</li>
-                            <li>Love challenging things, get extremely bored when things are too easy</li>
+                            <li>A love for doing challenging things</li>
                             <li>Radical Optimism (I bias towards asking 'what could go right')</li>
                             <li>Speaking many languages and thinking from many perspectives (doctors, consumers, investors, scientists, big pharma biz dev bros)</li>
                           </ul>
