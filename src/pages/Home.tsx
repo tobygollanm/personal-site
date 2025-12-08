@@ -292,9 +292,11 @@ export default function Home() {
                     <br /><br />
                     - Play guitar, bass, banjo. Played <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/birchwood.jpg`} type="image">
                         sick shows
-                      </MediaPopup> with birchwood.
+                      </MediaPopup> with a band called Birchwood.
                     <br /><br />
-                    - Ceramic mugs made with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're safe to drink from.
+                    - Made <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/ceramic.jpg`} type="image">
+                        ceramic mugs
+                      </MediaPopup> with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're safe to drink from.
                     <br /><br />
                     - Planned 3 retreats, biggest was 40+ ppl to Big Sur. Awesome times.
                     <br /><br />
