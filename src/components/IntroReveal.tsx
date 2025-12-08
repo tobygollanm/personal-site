@@ -6,7 +6,7 @@ type Region = 'soma' | 'apical' | 'basalL' | 'basalR' | 'axon'
 const sections = [
   { label: 'home', id: 'about' },
   { label: 'neurotech', id: 'neurotech' },
-  { label: 'strengths & flaws', id: 'research' },
+  { label: 'values, goals, reflections', id: 'research' },
   { label: 'writing', id: 'writing' },
   { label: 'other stuff', id: 'misc' },
 ]

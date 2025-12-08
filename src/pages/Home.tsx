@@ -231,12 +231,66 @@ export default function Home() {
                 </div>
               </section>
 
-              {/* Strengths & Flaws Section */}
+              {/* Values, Goals, Reflections Section */}
               <section id="research" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
-                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Strengths & Flaws</h2>
+                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Values, Goals, Reflections</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
-                    [Content to be added]
+                    <strong>Superpowers</strong>
+                    <br />
+                    Traits I'm either lucky to have been gifted, or built—often by accident—over time. I attribute most of my small successes so far to these characteristics & abilities.
+                    <br /><br />
+                    - Speaking many languages and thinking from many perspectives (doctors, consumers, investors, scientists, big pharma biz dev bros)
+                    <br /><br />
+                    - Hyperfocus, deep work, obsession
+                    <br /><br />
+                    - Thinking outside the box (I can sometimes be too contrarian and try to redesign systems that work totally fine)
+                    <br /><br />
+                    - Quickly picking up a new skill or domain knowledge
+                    <br /><br />
+                    - High risk tolerance (willing to make big bets and get back up after I fall)
+                    <br /><br />
+                    - Putting ego aside and admitting when wrong (I've been embarrassed enough times that this comes much more easily these days)
+                    <br /><br />
+                    - Strong desire to work with people, and a love of socializing/making connections
+                    <br /><br />
+                    - Love challenging things, get extremely bored when things are too easy
+                    <br /><br />
+                    - Radical Optimism (I bias towards asking 'what could go right')
+                  </p>
+                  <p>
+                    <strong>Flaws</strong>
+                    <br />
+                    I am a flawed human being, and some of my tendencies have downsides. I find tracking and being aware of my flaws helps me either rewire or manage them. Mostly written for myself, but obviously I have shared them and made them public because I think it's generally good to make other people aware of your flaws. Because we tend to be blind to our own flaws, I've run this list by some of my close friends/colleagues/family.
+                    <br /><br />
+                    - Considering too many perspectives can overwhelm or paralyze me. Working on being more willing to be wrong
+                    <br /><br />
+                    - Hyperfocus can sometimes go too far and lead me to neglect my personal life/relationships
+                    <br /><br />
+                    - Thinking outside the box can make me too contrarian, and I can fall into the trap of reinventing the wheel
+                    <br /><br />
+                    - I'm prone to forgetting important people/things/items unless I write them down (sometimes mitigated by relying on others to remind me)
+                    <br /><br />
+                    - Optimism can lead to time-blindness (thinking things will take 1/2 as long as they actually do)
+                    <br /><br />
+                    - I am sometimes way too tolerant and can blind myself to people's B.S.
+                  </p>
+                  <p>
+                    <strong>Large-Scale Goals</strong>
+                    <br />
+                    Things I want to do or help make happen in my lifetime:
+                    <br /><br />
+                    - Improve human sleep quality/reduce the amount of sleep we need
+                    <br /><br />
+                    - Create powerful, non-drug therapies for focus, anxiety, and enhancing social connection
+                    <br /><br />
+                    - Create new types of social venues that foster more music, food, and becoming friends with strangers with less drugs/alcohol
+                    <br /><br />
+                    - Decrease the bandwidth of human/machine interaction
+                    <br /><br />
+                    - Help create new types of intelligent systems that can solve problems and help us master our physical reality
+                    <br /><br />
+                    - Create biodiverse neighborhoods/living areas designed for much better human+nature symbiosis than today's urban/suburban setups
                   </p>
                 </div>
               </section>
@@ -298,9 +352,9 @@ export default function Home() {
                         ceramic mugs
                       </MediaPopup> with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're safe to drink from.
                     <br /><br />
-                    - Planned 3 retreats, biggest was 40+ ppl to Big Sur. Awesome times.
+                    - Plan group trips, most recently 38ppl to Big Sur and 32ppl to Sayulita
                     <br /><br />
-                    - Investing small amounts in psychedelic therapy and other new psychiatric tech companies I think will succeed <InlineArticle
+                    - Investing small amounts in psychedelic therapy and other psytech companies I think will succeed/help change the structure of our mental healthcare system <InlineArticle
                         title="Future of psychiatric medicine"
                         content={
                           <div className="space-y-4">
