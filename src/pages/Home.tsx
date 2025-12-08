@@ -242,7 +242,7 @@ export default function Home() {
                     <br /><br />
                     - Speaking many languages and thinking from many perspectives (doctors, consumers, investors, scientists, big pharma biz dev bros)
                     <br /><br />
-                    - Hyperfocus, deep work, obsession
+                    - Hyperfocus, deep work, directed obsession
                     <br /><br />
                     - Thinking outside the box (I can sometimes be too contrarian and try to redesign systems that work totally fine)
                     <br /><br />
@@ -261,7 +261,7 @@ export default function Home() {
                   <p>
                     <strong>Flaws</strong>
                     <br />
-                    I am a flawed human being, and some of my tendencies have downsides. I find tracking and being aware of my flaws helps me either rewire or manage them. Mostly written for myself, but obviously I have shared them and made them public because I think it's generally good to make other people aware of your flaws. Because we tend to be blind to our own flaws, I've run this list by some of my close friends/colleagues/family.
+                    I am a flawed human being, and some of my tendencies have downsides. I find that tracking and being aware of my flaws helps me either rewire or manage them. Mostly written for myself, but obviously I have shared them and made them public because I think it's generally good to make other people aware of your flaws. Because we tend to be blind to our own flaws, I've run this list by some of my close friends/colleagues/family.
                     <br /><br />
                     - Considering too many perspectives can overwhelm or paralyze me. Working on being more willing to be wrong
                     <br /><br />
