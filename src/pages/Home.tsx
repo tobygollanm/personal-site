@@ -266,7 +266,7 @@ export default function Home() {
                       content={
                         <div className="space-y-4 leading-relaxed">
                           <p>
-                            I am a flawed human being, and some of my tendencies have downsides. I find that tracking and being aware of my flaws helps me either rewire or manage them. Mostly written for myself, but obviously I have shared them and made them public because I think it's generally good to make other people aware of your flaws. Because we tend to be blind to our own flaws, I've run this list by some of my close friends/colleagues/family.
+                            I am a flawed human being, and some of my tendencies have downsides. I find that tracking and being aware of my flaws helps me either rewire or manage them. Mostly written for myself, but obviously I have shared them and made them public because I think it's generally good to make other people aware of your flaws. We tend to be blind to our own flaws, so I've run this list by some of my close friends/colleagues/family.
                           </p>
                           <ul className="list-disc list-inside space-y-2 ml-4">
                             <li>Considering too many perspectives can overwhelm or paralyze me. Working on being more willing to be wrong</li>
