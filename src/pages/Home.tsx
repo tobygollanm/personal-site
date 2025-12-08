@@ -236,61 +236,73 @@ export default function Home() {
                 <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Values, Goals, Reflections</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
-                    <strong>Superpowers</strong>
-                    <br />
-                    Traits I'm either lucky to have been gifted, or built—often by accident—over time. I attribute most of my small successes so far to these characteristics & abilities.
-                    <br /><br />
-                    - Speaking many languages and thinking from many perspectives (doctors, consumers, investors, scientists, big pharma biz dev bros)
-                    <br /><br />
-                    - Hyperfocus, deep work, directed obsession
-                    <br /><br />
-                    - Thinking outside the box (I can sometimes be too contrarian and try to redesign systems that work totally fine)
-                    <br /><br />
-                    - Quickly picking up a new skill or domain knowledge
-                    <br /><br />
-                    - High risk tolerance (willing to make big bets and get back up after I fall)
-                    <br /><br />
-                    - Putting ego aside and admitting when wrong (I've been embarrassed enough times that this comes much more easily these days)
-                    <br /><br />
-                    - Strong desire to work with people, and a love of socializing/making connections
-                    <br /><br />
-                    - Love challenging things, get extremely bored when things are too easy
-                    <br /><br />
-                    - Radical Optimism (I bias towards asking 'what could go right')
+                    <InlineArticle
+                      title="Superpowers"
+                      content={
+                        <div className="space-y-4 leading-relaxed">
+                          <p>
+                            Traits I'm either lucky to have been gifted, or built—often by accident—over time. I attribute most of my small successes so far to these characteristics & abilities.
+                          </p>
+                          <ul className="list-disc list-inside space-y-2 ml-4">
+                            <li>Speaking many languages and thinking from many perspectives (doctors, consumers, investors, scientists, big pharma biz dev bros)</li>
+                            <li>Hyperfocus, deep work, directed obsession</li>
+                            <li>Thinking outside the box (I can sometimes be too contrarian and try to redesign systems that work totally fine)</li>
+                            <li>Quickly picking up a new skill or domain knowledge</li>
+                            <li>High risk tolerance (willing to make big bets and get back up after I fall)</li>
+                            <li>Putting ego aside and admitting when wrong (I've been embarrassed enough times that this comes much more easily these days)</li>
+                            <li>Strong desire to work with people, and a love of socializing/making connections</li>
+                            <li>Love challenging things, get extremely bored when things are too easy</li>
+                            <li>Radical Optimism (I bias towards asking 'what could go right')</li>
+                          </ul>
+                        </div>
+                      }
+                    >
+                      <strong>Superpowers</strong>
+                    </InlineArticle>
                   </p>
                   <p>
-                    <strong>Flaws</strong>
-                    <br />
-                    I am a flawed human being, and some of my tendencies have downsides. I find that tracking and being aware of my flaws helps me either rewire or manage them. Mostly written for myself, but obviously I have shared them and made them public because I think it's generally good to make other people aware of your flaws. Because we tend to be blind to our own flaws, I've run this list by some of my close friends/colleagues/family.
-                    <br /><br />
-                    - Considering too many perspectives can overwhelm or paralyze me. Working on being more willing to be wrong
-                    <br /><br />
-                    - Hyperfocus can sometimes go too far and lead me to neglect my personal life/relationships
-                    <br /><br />
-                    - Thinking outside the box can make me too contrarian, and I can fall into the trap of reinventing the wheel
-                    <br /><br />
-                    - I'm prone to forgetting important people/things/items unless I write them down (sometimes mitigated by relying on others to remind me)
-                    <br /><br />
-                    - Optimism can lead to time-blindness (thinking things will take 1/2 as long as they actually do)
-                    <br /><br />
-                    - I am sometimes way too tolerant and can blind myself to people's B.S.
+                    <InlineArticle
+                      title="Flaws"
+                      content={
+                        <div className="space-y-4 leading-relaxed">
+                          <p>
+                            I am a flawed human being, and some of my tendencies have downsides. I find that tracking and being aware of my flaws helps me either rewire or manage them. Mostly written for myself, but obviously I have shared them and made them public because I think it's generally good to make other people aware of your flaws. Because we tend to be blind to our own flaws, I've run this list by some of my close friends/colleagues/family.
+                          </p>
+                          <ul className="list-disc list-inside space-y-2 ml-4">
+                            <li>Considering too many perspectives can overwhelm or paralyze me. Working on being more willing to be wrong</li>
+                            <li>Hyperfocus can sometimes go too far and lead me to neglect my personal life/relationships</li>
+                            <li>Thinking outside the box can make me too contrarian, and I can fall into the trap of reinventing the wheel</li>
+                            <li>I'm prone to forgetting important people/things/items unless I write them down (sometimes mitigated by relying on others to remind me)</li>
+                            <li>Optimism can lead to time-blindness (thinking things will take 1/2 as long as they actually do)</li>
+                            <li>I am sometimes way too tolerant and can blind myself to people's B.S.</li>
+                          </ul>
+                        </div>
+                      }
+                    >
+                      <strong>Flaws</strong>
+                    </InlineArticle>
                   </p>
                   <p>
-                    <strong>Large-Scale Goals</strong>
-                    <br />
-                    Things I want to do or help make happen in my lifetime:
-                    <br /><br />
-                    - Improve human sleep quality/reduce the amount of sleep we need
-                    <br /><br />
-                    - Create powerful, non-drug therapies for focus, anxiety, and enhancing social connection
-                    <br /><br />
-                    - Create new types of social venues that foster more music, food, and becoming friends with strangers with less drugs/alcohol
-                    <br /><br />
-                    - Decrease the bandwidth of human/machine interaction
-                    <br /><br />
-                    - Help create new types of intelligent systems that can solve problems and help us master our physical reality
-                    <br /><br />
-                    - Create biodiverse neighborhoods/living areas designed for much better human+nature symbiosis than today's urban/suburban setups
+                    <InlineArticle
+                      title="Large-Scale Goals"
+                      content={
+                        <div className="space-y-4 leading-relaxed">
+                          <p>
+                            Things I want to do or help make happen in my lifetime:
+                          </p>
+                          <ul className="list-disc list-inside space-y-2 ml-4">
+                            <li>Improve human sleep quality/reduce the amount of sleep we need</li>
+                            <li>Create powerful, non-drug therapies for focus, anxiety, and enhancing social connection</li>
+                            <li>Create new types of social venues that foster more music, food, and becoming friends with strangers with less drugs/alcohol</li>
+                            <li>Decrease the bandwidth of human/machine interaction</li>
+                            <li>Help create new types of intelligent systems that can solve problems and help us master our physical reality</li>
+                            <li>Create biodiverse neighborhoods/living areas designed for much better human+nature symbiosis than today's urban/suburban setups</li>
+                          </ul>
+                        </div>
+                      }
+                    >
+                      <strong>Large-Scale Goals</strong>
+                    </InlineArticle>
                   </p>
                 </div>
               </section>
