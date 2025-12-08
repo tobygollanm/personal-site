@@ -233,7 +233,7 @@ export default function Home() {
 
               {/* Values, Goals, Reflections Section */}
               <section id="research" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
-                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Values, Goals, Reflections</h2>
+                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">My Values, Goals, and Reflections</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
                     <InlineArticle
@@ -244,7 +244,6 @@ export default function Home() {
                             Traits I'm either lucky to have been gifted, or built—often by accident—over time. I attribute most of my small successes so far to these characteristics & abilities.
                           </p>
                           <ul className="list-disc list-inside space-y-2 ml-4">
-                            <li>Speaking many languages and thinking from many perspectives (doctors, consumers, investors, scientists, big pharma biz dev bros)</li>
                             <li>Hyperfocus, deep work, directed obsession</li>
                             <li>Thinking outside the box (I can sometimes be too contrarian and try to redesign systems that work totally fine)</li>
                             <li>Quickly picking up a new skill or domain knowledge</li>
@@ -253,6 +252,7 @@ export default function Home() {
                             <li>Strong desire to work with people, and a love of socializing/making connections</li>
                             <li>Love challenging things, get extremely bored when things are too easy</li>
                             <li>Radical Optimism (I bias towards asking 'what could go right')</li>
+                            <li>Speaking many languages and thinking from many perspectives (doctors, consumers, investors, scientists, big pharma biz dev bros)</li>
                           </ul>
                         </div>
                       }
