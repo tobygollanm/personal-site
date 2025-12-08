@@ -189,7 +189,7 @@ export default function Home() {
                   <p className="leading-relaxed">
                     Hi, I'm Toby. My main mission is to create neurotechnology for the enhancement of human health, performance and wellbeing.
                     <br /><br />
-                    Recently, I turned down an offer to do a PhD in Biomedical Engineering at Carnegie Mellon, moved to San Francisco, and started a company with the goal of turning non-invasive focused ultrasound brain stimulation from a research tool into a seamless product that any clinic—and later, any normal person—can use.
+                    Most recently, I turned down an offer to do a PhD in Biomedical Engineering at Carnegie Mellon (and some others), moved to San Francisco, and joined forces with a UCLA-trained neuroscientist to start a company with the goal of turning non-invasive focused ultrasound brain stimulation from a research tool into a seamless product that any clinic—and later, any normal person—can use.
                     <br /><br />
                     Before this, I:
                     <br /><br />
@@ -197,9 +197,7 @@ export default function Home() {
                     <br /><br />
                     - Studied brain science at UC Santa Barbara, did research on how neurons metabolize proteins that contribute to Alzheimer's disease (<a href="https://pubmed.ncbi.nlm.nih.gov/40964962/" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:opacity-70 transition-opacity">Published Here</a>).
                     <br /><br />
-                    - Started a company with two PhD students in my lab building a new technology for non-invasive electrical stimulation in the deep brain.
-                    <br /><br />
-                    - Won a year-long accelerator, filed patents on the tech.
+                    - Started a company with two PhD students in my lab building a new technology for non-invasive electrical stimulation in the deep brain. Won a year-long accelerator competition, & filed patents on the tech.
                     <br /><br />
                     - Did seasonal work in EMS as a CA State Parks Lifeguard. Made ocean/trail rescues, drove trucks on the beach, saved some lives, and ate many burritos. Listened to a lot of sci/tech podcasts while watching the water.
                   </p>
@@ -211,28 +209,33 @@ export default function Home() {
                 <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Neurotech</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
-                    Pick any two random neuroscientists and put them in a room together, and there's a pretty damn solid chance that they would barely be able to understand each others' work.
-                    <br />
-                    Neurotech can be anything from a stimulator implanted into your deep brain to a wristband that electrically stimulates nerves in your wrist to reduce tremors (one of the most clever devices of the decade: <a href="https://calahealth.com/" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:opacity-70 transition-opacity">https://calahealth.com/</a>).
+                    This is an extremely broad field. 'Neurotech' can mean anything from neuroimaging software that determines functional connectivity between brain regions, to a wristband that stimulates nerves in your wrist to reduce tremors (one of my favorite neurotech products: <a href="https://calahealth.com/" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:opacity-70 transition-opacity">https://calahealth.com/</a>).
                   </p>
                   <p>
-                    My main area of technical depth lies in non-invasive and minimally-invasive neuromodulation of deep brain networks and the supporting technology needed to do this at scale.
-                    <br />
-                    I've also worked on methods for collecting and packaging different types of brain-related data for training ML models on relationships between how you stimulate different networks and what outcomes you get, as well as how to better predict where you're hitting with much less available data.
+                    My main area of technical depth lies in non-invasive and minimally-invasive neuromodulation of deep brain networks and the supporting technology needed to do this at scale. I've worked with the brain at many zoom-levels -- from neural circuits and behavior (zoomed out) all the way down to the molecular level (zoomed WAY in).
                   </p>
-                </div>
-              </section>
-
-              {/* Projects Section */}
-              <section id="research" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
-                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Projects</h2>
-                <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
-                  <ul className="list-disc list-inside space-y-2">
+                  <p>
+                    Recently, I've also gotten deep into different types of hardware for stimulating the brain (in fact most of them, if not all), and methods for collecting and packaging different types of brain-related data for training ML models on the relationship between stimulation 'parameters' (the patterns or 'language' used to communicate with the brain) and behavioral outcomes, as well as ML models that can predict the locations of deep-brain targets with much less data than is usually available.
+                  </p>
+                  <p>
+                    <strong>Projects:</strong>
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
                     <li>Predictive generative mapping of brain regions from limited structural information by fusing structural MRI with a bunch of other measurements. Goal is to eliminate MRI requirements from certain deep-brain neuromod workflows</li>
                     <li>Simplified neuronavigation systems for at-home neuromodulation</li>
                     <li>A new method of highly-precise peripheral nerve stimulation for certain types of neuropathic pain.</li>
                     <li>A few new things in the works that I can't yet post on here.</li>
                   </ul>
+                </div>
+              </section>
+
+              {/* Strengths & Flaws Section */}
+              <section id="research" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
+                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Strengths & Flaws</h2>
+                <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
+                  <p>
+                    [Content to be added]
+                  </p>
                 </div>
               </section>
 
