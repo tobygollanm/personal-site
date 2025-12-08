@@ -219,13 +219,15 @@ export default function Home() {
                   </p>
                   <p>
                     <strong>Projects:</strong>
+                    <br /><br />
+                    - Predictive generative mapping of brain regions from limited structural information by fusing structural MRI with a bunch of other measurements. Goal is to eliminate MRI requirements from certain deep-brain neuromod workflows
+                    <br /><br />
+                    - Simplified neuronavigation systems for at-home neuromodulation
+                    <br /><br />
+                    - A new method of highly-precise peripheral nerve stimulation for certain types of neuropathic pain.
+                    <br /><br />
+                    - A few new things in the works that I can't yet post on here.
                   </p>
-                  <ul className="list-disc list-inside space-y-2 ml-4">
-                    <li>Predictive generative mapping of brain regions from limited structural information by fusing structural MRI with a bunch of other measurements. Goal is to eliminate MRI requirements from certain deep-brain neuromod workflows</li>
-                    <li>Simplified neuronavigation systems for at-home neuromodulation</li>
-                    <li>A new method of highly-precise peripheral nerve stimulation for certain types of neuropathic pain.</li>
-                    <li>A few new things in the works that I can't yet post on here.</li>
-                  </ul>
                 </div>
               </section>
 
@@ -279,30 +281,24 @@ export default function Home() {
               <section id="misc" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
                 <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Other stuff I do (hard to keep track)</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
-                  <ul className="list-disc list-inside space-y-2">
-                    <li>
-                      <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/surfvid.mp4`} type="video">
+                  <p>
+                    - <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/surfvid.mp4`} type="video">
                         Surf gnarly waves
                       </MediaPopup> and try to do an air reverse (not even close)
-                    </li>
-                    <li>
-                      <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/trailrun.jpg`} type="image">
+                    <br /><br />
+                    - <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/trailrun.jpg`} type="image">
                         Run trails
                       </MediaPopup>, up and down mountains. If I can't make it to the trails, the hills of SF are plenty steep.
-                    </li>
-                    <li>
-                      Play guitar, bass, banjo. Played <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/birchwood.jpg`} type="image">
+                    <br /><br />
+                    - Play guitar, bass, banjo. Played <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/birchwood.jpg`} type="image">
                         sick shows
                       </MediaPopup> with birchwood.
-                    </li>
-                    <li>
-                      Ceramic mugs made with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're safe to drink from.
-                    </li>
-                    <li>
-                      Planned 3 retreats, biggest was 40+ ppl to Big Sur. Awesome times.
-                    </li>
-                    <li>
-                      Investing small amounts in psychedelic therapy and other new psychiatric tech companies I think will succeed <InlineArticle
+                    <br /><br />
+                    - Ceramic mugs made with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're safe to drink from.
+                    <br /><br />
+                    - Planned 3 retreats, biggest was 40+ ppl to Big Sur. Awesome times.
+                    <br /><br />
+                    - Investing small amounts in psychedelic therapy and other new psychiatric tech companies I think will succeed <InlineArticle
                         title="Future of psychiatric medicine"
                         content={
                           <div className="space-y-4">
@@ -314,8 +310,7 @@ export default function Home() {
                       >
                         [link to my future of psychiatric medicine article]
                       </InlineArticle>
-                    </li>
-                  </ul>
+                  </p>
                 </div>
               </section>
                 </div>
