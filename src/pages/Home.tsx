@@ -245,7 +245,7 @@ export default function Home() {
                           </p>
                           <ul className="list-disc list-inside space-y-2 ml-4">
                             <li>Hyperfocus, deep work, directed obsession</li>
-                            <li>Thinking outside the box (I can sometimes be too contrarian and try to redesign systems that work totally fine)</li>
+                            <li>Thinking outside the box (I can't help it, but it's usually quite useful)</li>
                             <li>Quickly picking up a new skill or domain knowledge</li>
                             <li>High risk tolerance (willing to make big bets and get back up after I fall)</li>
                             <li>Putting ego aside and admitting when wrong (I've been embarrassed enough times that this comes much more easily these days)</li>
