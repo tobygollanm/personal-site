@@ -209,13 +209,16 @@ export default function Home() {
                 <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Neurotech</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
-                    This is an extremely broad field. 'Neurotech' can mean anything from neuroimaging software that determines functional connectivity between brain regions, to a wristband that stimulates nerves in your wrist to reduce tremors (one of my favorite neurotech products: <a href="https://calahealth.com/" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:opacity-70 transition-opacity">https://calahealth.com/</a>).
+                    Being a human is a paradox. On one side, we are perceptive, conscious, and crave freedom. On the other, many of us are very limited by our own minds. To me, neurotechnology offers a direct way to remove these limitations and push us toward collective evolution at scale.
                   </p>
                   <p>
-                    My main area of technical depth lies in non-invasive and minimally-invasive neuromodulation of deep brain networks and the supporting technology needed to do this at scale. I've worked with the brain at many zoom-levels -- from neural circuits and behavior (zoomed out) all the way down to the molecular level (zoomed WAY in).
+                    This is an extremely broad field. 'Neurotech' can mean anything from neuroimaging software that determines functional connectivity between brain regions, to a wristband that stimulates nerves in your wrist to reduce tremors (one of my favorite neurotech products for its practicality: <a href="https://calahealth.com/" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:opacity-70 transition-opacity">https://calahealth.com/</a>).
                   </p>
                   <p>
-                    Recently, I've also gotten deep into different types of hardware for stimulating the brain (in fact most of them, if not all), and methods for collecting and packaging different types of brain-related data for training ML models on the relationship between stimulation 'parameters' (the patterns or 'language' used to communicate with the brain) and behavioral outcomes, as well as ML models that can predict the locations of deep-brain targets with much less data than is usually available.
+                    My main area of technical depth lies in non-invasive and minimally-invasive neuromodulation of deep brain networks and the supporting technology needed to do this at scale. I've also designed systems for stimulating peripheral nerves non-invasively with high precision. I've worked with the brain at many zoom-levels -- from neural circuits and behavior (zoomed out) all the way down to the molecular level (zoomed WAY in).
+                  </p>
+                  <p>
+                    Recently, I've also worked with different types of hardware systems for stimulating the brain, and methods for collecting and packaging brain and anatomical data for training ML models on the relationship between stimulation 'parameters' (the patterns or 'language' used to communicate with the brain) and behavioral outcomes, as well as ML models that can predict the locations of deep-brain targets with much less data than is usually available.
                   </p>
                   <p>
                     <strong>Projects:</strong>
