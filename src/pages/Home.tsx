@@ -296,10 +296,11 @@ export default function Home() {
                           <ul className="list-disc list-inside space-y-2 ml-4">
                             <li>Improve human sleep quality/reduce the amount of sleep we need</li>
                             <li>Create powerful, non-drug therapies for focus, anxiety, and enhancing social connection</li>
-                            <li>Create new types of social venues that foster more music, food, and becoming friends with strangers with less drugs/alcohol</li>
+                            <li>Shift the healthcare system to preventative care</li>
+                            <li>Create new types of social venues that foster music and social connection with less drugs/alcohol (neurotech-enhanced venues)</li>
                             <li>Decrease the bandwidth of human/machine interaction</li>
-                            <li>Help create new types of intelligent systems that can solve problems and help us master our physical reality</li>
-                            <li>Create biodiverse neighborhoods/living areas designed for much better human+nature symbiosis than today's urban/suburban setups</li>
+                            <li>Use neurotechnology to enhance meditation, sensation, and conscious experience</li>
+                            <li>Create biodiverse neighborhoods/living areas designed for human+nature symbiosis</li>
                           </ul>
                         </div>
                       }
