@@ -187,7 +187,7 @@ export default function Home() {
                 
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p className="leading-relaxed">
-                    Hi, I'm Toby. My main mission is to create neurotechnology for the enhancement of human health, performance and wellbeing.
+                    . Hi, I'm Toby. My main mission is to create neurotechnology for the enhancement of human health, performance and wellbeing.
                     <br /><br />
                     Most recently, I turned down an offer to do a PhD in Biomedical Engineering at Carnegie Mellon, moved to San Francisco, and joined forces with a UCLA-trained neuroscientist to start a pre-seed neurotech company developing non-invasive focused ultrasound brain stimulation software and systems for clinical and research use.
                     <br /><br />
