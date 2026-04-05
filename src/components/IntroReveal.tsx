@@ -5,7 +5,7 @@ type Region = 'soma' | 'apical' | 'basalL' | 'basalR' | 'axon'
 
 const sections = [
   { label: 'home', id: 'about' },
-  { label: 'neurotech', id: 'neurotech' },
+  { label: 'bioenhancement', id: 'bioenhancement' },
   { label: 'about me', id: 'research' },
   { label: 'writing', id: 'writing' },
   { label: 'other stuff', id: 'misc' },

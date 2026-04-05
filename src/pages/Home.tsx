@@ -37,7 +37,8 @@ export default function Home() {
   // Handle hash-based navigation (e.g., /#research) - scroll to section after intro completes
   useEffect(() => {
     if (showIntro && location.hash) {
-      const sectionId = location.hash.substring(1) // Remove the '#'
+      const rawId = location.hash.substring(1) // Remove the '#'
+      const sectionId = rawId === 'neurotech' ? 'bioenhancement' : rawId
       const sectionElement = document.getElementById(sectionId)
       if (sectionElement) {
         // Wait a bit for the transition to complete, then scroll
@@ -187,15 +188,15 @@ export default function Home() {
                 
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p className="leading-relaxed">
-                    . Hi, I'm Toby. My main mission is to create neurotechnology for the enhancement of human health, performance and wellbeing.
+                    Hi, I'm Toby. My main mission is to help humans evolve rapidly within one generation by creating massively scalable biotechnology to enhance our performance, cognition and wellbeing.
                     <br /><br />
-                    Most recently, I turned down an offer to do a PhD in Biomedical Engineering at Carnegie Mellon, moved to San Francisco, and joined forces with a UCLA-trained neuroscientist to start a pre-seed neurotech company developing non-invasive focused ultrasound brain stimulation software and systems for clinical and research use.
+                    Most recently, I turned down Bioengineering PhD offers at Carnegie Mellon, Penn, and UCSD, and moved to San Francisco to build a company at the interface of biotechnology and human enhancement.
                     <br /><br />
                     Before this, I:
                     <br /><br />
                     - Started my first company at 17 (AI-driven digital ads). Hired a few employees, landed celebrity clients and large real estate developers, made some $$.
                     <br /><br />
-                    - Studied brain science at UC Santa Barbara, did research on how neurons metabolize proteins that contribute to Alzheimer's disease (<a href="https://pubmed.ncbi.nlm.nih.gov/40964962/" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:opacity-70 transition-opacity">Published Here</a>).
+                    - Studied molecular neurobiology in the Kosik Lab at UC Santa Barbara, did research on how neurons metabolize proteins that contribute to Alzheimer's disease (<a href="https://pubmed.ncbi.nlm.nih.gov/40964962/" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:opacity-70 transition-opacity">Published Here</a>).
                     <br /><br />
                     - Started a company with two PhD students in my lab building a new technology for non-invasive electrical stimulation in the deep brain. Won a year-long accelerator competition, & filed patents on the tech.
                     <br /><br />
@@ -204,21 +205,18 @@ export default function Home() {
                 </div>
               </section>
 
-              {/* Neurotech Section */}
-              <section id="neurotech" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
-                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Neurotech</h2>
+              {/* Bioenhancement Section */}
+              <section id="bioenhancement" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
+                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Bioenhancement</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
-                    Being a human is a paradox. On one side, we are perceptive, conscious, and crave freedom. On the other, many of us are very limited by our own minds. To me, neurotechnology offers a direct way to remove these limitations and push us toward collective evolution at scale.
+                    Being human is a paradox. Compared to the organisms that have come before us and share our planet, we've seemingly risen to a higher level of perception, invention, and consciousness. However, we are still hindered by our primal instincts, vestiges from ancestral adaptations, and the physical limits of our bodies and minds. In a world that is rapidly changing due in large part to our own technological progress, we will need to adapt much faster than natural selection allows. To me, engineering our biology is an opportunity to push these limits and accelerate our evolution at scale.
                   </p>
                   <p>
-                    This is an extremely broad field. 'Neurotech' can mean anything from neuroimaging software that determines functional connectivity between brain regions, to a wristband that stimulates nerves in your wrist to reduce tremors (one of my favorite neurotech products for its practicality: <a href="https://calahealth.com/" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:opacity-70 transition-opacity">https://calahealth.com/</a>).
+                    In the past I've worked on new ways to deliver biologics across the blood-brain barrier, and combine them with non-invasive and minimally-invasive tools for modulation of deep brain networks. I've also designed biologic and nanotechnology based systems for modulating peripheral nerve signaling with high precision. I've worked with the body at many zoom-levels -- from systems-level neural circuits and behavior (zoomed out) all the way down to subcellular biology at the molecular level (zoomed WAY in).
                   </p>
                   <p>
-                    My main area of technical depth lies in non-invasive and minimally-invasive neuromodulation of deep brain networks and the supporting technology needed to do this at scale. I've also designed systems for stimulating peripheral nerves non-invasively with high precision. I've worked with the brain at many zoom-levels -- from neural circuits and behavior (zoomed out) all the way down to the molecular level (zoomed WAY in).
-                  </p>
-                  <p>
-                    Recently, I've also worked with different types of hardware systems for stimulating the brain, and methods for collecting and packaging brain and anatomical data for training ML models on the relationship between stimulation 'parameters' (the patterns or 'language' used to communicate with the brain) and behavioral outcomes, as well as ML models that can predict the locations of deep-brain targets with much less data than is usually available.
+                    I've also worked with different methods for collecting and packaging brain and anatomical data to train ML models on the relationship between stimulation 'parameters' (the patterns or 'language' used to communicate with the brain) and behavioral outcomes, as well as ML models that can predict the locations of deep-brain targets with much less data than is usually available.
                   </p>
                   <p>
                     <strong>Projects:</strong>

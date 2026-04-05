@@ -28,7 +28,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'neurotech',
-        element: <Navigate to="/#neurotech" replace />,
+        element: <Navigate to="/#bioenhancement" replace />,
+      },
+      {
+        path: 'bioenhancement',
+        element: <Navigate to="/#bioenhancement" replace />,
       },
       {
         path: 'writing',
