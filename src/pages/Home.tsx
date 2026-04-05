@@ -188,7 +188,7 @@ export default function Home() {
                 
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p className="leading-relaxed">
-                    Hi, I'm Toby. My main mission is to help humans evolve rapidly within one generation by creating massively scalable biotechnology to enhance our performance, cognition and wellbeing.
+                    Hi, I'm Toby. My main mission is to create massively scalable biotechnology to enhance human performance, cognition and wellbeing.
                     <br /><br />
                     Most recently, I turned down Bioengineering PhD offers at Carnegie Mellon, Penn, and UCSD, and moved to San Francisco to build a company at the interface of biotechnology and human enhancement.
                     <br /><br />
