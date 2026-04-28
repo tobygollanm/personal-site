@@ -213,21 +213,17 @@ export default function Home() {
                     Being human is a paradox. Compared to the organisms that have come before us and share our planet, we've seemingly risen to a higher level of perception, invention, and consciousness. However, we are still hindered by our primal instincts, vestiges from ancestral adaptations, and the physical limits of our bodies and minds. In a world that is rapidly changing due in large part to our own technological progress, we will need to adapt much faster than natural selection allows. To me, engineering our biology is an opportunity to push these limits and accelerate our evolution at scale.
                   </p>
                   <p>
+                    <strong>Past Engineering Projects:</strong>
+                    <br /><br />
                     In the past I've worked on new ways to deliver biologics across the blood-brain barrier, and combine them with non-invasive and minimally-invasive tools for modulation of deep brain networks. I've also designed biologic and nanotechnology based systems for modulating peripheral nerve signaling with high precision. I've worked with the body at many zoom-levels -- from systems-level neural circuits and behavior (zoomed out) all the way down to subcellular biology at the molecular level (zoomed WAY in).
-                  </p>
-                  <p>
+                    <br /><br />
                     I've also worked with different methods for collecting and packaging brain and anatomical data to train ML models on the relationship between stimulation 'parameters' (the patterns or 'language' used to communicate with the brain) and behavioral outcomes, as well as ML models that can predict the locations of deep-brain targets with much less data than is usually available.
-                  </p>
-                  <p>
-                    <strong>Projects:</strong>
                     <br /><br />
                     - Predictive generative mapping of brain regions from limited structural information by fusing structural MRI with a bunch of other measurements. Goal is to eliminate MRI requirements from certain deep-brain neuromod workflows
                     <br /><br />
                     - Simplified neuronavigation systems for at-home neuromodulation
                     <br /><br />
                     - A new method of highly-precise peripheral nerve stimulation for certain types of neuropathic pain.
-                    <br /><br />
-                    - A few new things in the works that I can't yet post on here.
                   </p>
                 </div>
               </section>
