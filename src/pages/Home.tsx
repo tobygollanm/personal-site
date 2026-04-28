@@ -233,13 +233,11 @@ export default function Home() {
                 </div>
               </section>
 
-              {/* Values, Goals, Reflections Section */}
+              {/* Life Goals Section */}
               <section id="research" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
-                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">My Values, Goals, and Reflections</h2>
+                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Life Goals</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
-                    <strong>Life Goals</strong>
-                    <br /><br />
                     Things I want to do or help make happen in my lifetime:
                     <br /><br />
                     - Improve human sleep quality/reduce the amount of sleep we need
@@ -248,7 +246,7 @@ export default function Home() {
                     <br /><br />
                     - Shift the healthcare system to preventative care
                     <br /><br />
-                    - restore the American dream
+                    - Revitalize the American economy through biotechnology
                     <br /><br />
                     - Decrease the bandwidth of human/machine interaction
                     <br /><br />
