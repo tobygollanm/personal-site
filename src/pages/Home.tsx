@@ -212,9 +212,14 @@ export default function Home() {
                   <p>
                     Being human is a paradox. Compared to the organisms that have come before us and share our planet, we've seemingly risen to a higher level of perception, invention, and consciousness. However, we are still hindered by our primal instincts, vestiges from ancestral adaptations, and the physical limits of our bodies and minds. In a world that is rapidly changing due in large part to our own technological progress, we will need to adapt much faster than natural selection allows. To me, engineering our biology is an opportunity to push these limits and accelerate our evolution at scale.
                   </p>
+                </div>
+              </section>
+
+              {/* Past Engineering Projects Section */}
+              <section id="past-engineering-projects" className="min-h-screen flex flex-col justify-center py-4 md:py-6">
+                <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">Past Engineering Projects</h2>
+                <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
-                    <strong>Past Engineering Projects:</strong>
-                    <br /><br />
                     In the past I've worked on new ways to deliver biologics across the blood-brain barrier, and combine them with non-invasive and minimally-invasive tools for modulation of deep brain networks. I've also designed biologic and nanotechnology based systems for modulating peripheral nerve signaling with high precision. I've worked with the body at many zoom-levels -- from systems-level neural circuits and behavior (zoomed out) all the way down to subcellular biology at the molecular level (zoomed WAY in).
                     <br /><br />
                     I've also worked with different methods for collecting and packaging brain and anatomical data to train ML models on the relationship between stimulation 'parameters' (the patterns or 'language' used to communicate with the brain) and behavioral outcomes, as well as ML models that can predict the locations of deep-brain targets with much less data than is usually available.
@@ -296,35 +301,20 @@ export default function Home() {
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
                     - <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/surfvid.mp4`} type="video">
-                        Surf gnarly waves
-                      </MediaPopup> and try to do an air reverse (not even close)
+                        Surf
+                      </MediaPopup>
                     <br /><br />
                     - <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/trailrun.jpg`} type="image">
                         Run trails
                       </MediaPopup>, up and down mountains. If I can't make it to the trails, the hills of SF are plenty steep.
                     <br /><br />
-                    - Play guitar, bass, banjo. Played <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/birchwood.jpg`} type="image">
-                        sick shows
-                      </MediaPopup> with a band called Birchwood.
+                    - <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/birchwood.jpg`} type="image">
+                        Play guitar, bass, & banjo.
+                      </MediaPopup>
                     <br /><br />
                     - Made <MediaPopup src={`${import.meta.env.BASE_URL}images/misc/ceramic.jpg`} type="image">
                         ceramic mugs
                       </MediaPopup> with my piezoelectric nanoparticles baked into the glaze. Luckily the barium stays locked into the crystalline structure even at very high temperatures, so they're safe to drink from.
-                    <br /><br />
-                    - Plan group trips, most recently 38ppl to Big Sur and 32ppl to Sayulita
-                    <br /><br />
-                    - Investing small amounts in psychedelic therapy and other psytech companies I think will succeed/help change the structure of our mental healthcare system <InlineArticle
-                        title="Future of psychiatric medicine"
-                        content={
-                          <div className="space-y-4">
-                            <p className="leading-relaxed">
-                              [Article content to be added]
-                            </p>
-                          </div>
-                        }
-                      >
-                        [link to my future of psychiatric medicine article]
-                      </InlineArticle>
                   </p>
                 </div>
               </section>
