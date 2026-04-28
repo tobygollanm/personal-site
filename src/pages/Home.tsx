@@ -233,74 +233,23 @@ export default function Home() {
                 <h2 className="text-xl md:text-2xl font-normal text-foreground mb-4 md:mb-6">My Values, Goals, and Reflections</h2>
                 <div className="space-y-4 text-sm md:text-base text-foreground font-normal">
                   <p>
-                    <InlineArticle
-                      title="Superpowers"
-                      content={
-                        <div className="space-y-4 leading-relaxed">
-                          <p>
-                            Traits I'm either lucky to have been gifted, or built—often by accident—over time. I attribute most of my small successes so far to these characteristics & abilities.
-                          </p>
-                          <ul className="list-disc list-inside space-y-2 ml-4">
-                            <li>Hyperfocus, deep work, directed obsession</li>
-                            <li>Thinking outside the box (I can't help it, but it's usually quite useful)</li>
-                            <li>Quickly picking up a new skill or domain knowledge</li>
-                            <li>High risk tolerance (willing to make big bets and get back up after I fall)</li>
-                            <li>Putting ego aside and admitting when wrong (I've been embarrassed enough times that this comes much more easily these days)</li>
-                            <li>Strong desire to work with people, and a love of socializing/making connections</li>
-                            <li>A love for doing challenging things</li>
-                            <li>Radical Optimism (I bias towards asking 'what could go right')</li>
-                            <li>Speaking many languages and thinking from many perspectives (doctors, consumers, investors, scientists, big pharma biz dev bros)</li>
-                          </ul>
-                        </div>
-                      }
-                    >
-                      <strong>Superpowers</strong>
-                    </InlineArticle>
-                  </p>
-                  <p>
-                    <InlineArticle
-                      title="Flaws"
-                      content={
-                        <div className="space-y-4 leading-relaxed">
-                          <p>
-                            I am a flawed human being, and some of my tendencies have downsides. I find that tracking and being aware of my flaws helps me either rewire or manage them. Mostly written for myself, but obviously I have shared them and made them public because I think it's generally good to make other people aware of your flaws. We tend to be blind to our own flaws, so I've run this list by some of my close friends/colleagues/family.
-                          </p>
-                          <ul className="list-disc list-inside space-y-2 ml-4">
-                            <li>Considering too many perspectives can overwhelm or paralyze me. Working on being more willing to be wrong</li>
-                            <li>Hyperfocus can sometimes go too far and lead me to neglect my personal life/relationships</li>
-                            <li>Thinking outside the box can make me too contrarian, and I can fall into the trap of reinventing the wheel</li>
-                            <li>I'm prone to forgetting important people/things/items unless I write them down (sometimes mitigated by relying on others to remind me)</li>
-                            <li>Optimism can lead to time-blindness (thinking things will take 1/2 as long as they actually do)</li>
-                            <li>I am sometimes way too tolerant and can blind myself to people's B.S.</li>
-                          </ul>
-                        </div>
-                      }
-                    >
-                      <strong>Flaws</strong>
-                    </InlineArticle>
-                  </p>
-                  <p>
-                    <InlineArticle
-                      title="Large-Scale Goals"
-                      content={
-                        <div className="space-y-4 leading-relaxed">
-                          <p>
-                            Things I want to do or help make happen in my lifetime:
-                          </p>
-                          <ul className="list-disc list-inside space-y-2 ml-4">
-                            <li>Improve human sleep quality/reduce the amount of sleep we need</li>
-                            <li>Create powerful, non-drug therapies for focus, anxiety, and enhancing social connection</li>
-                            <li>Shift the healthcare system to preventative care</li>
-                            <li>Create new types of social venues that foster music and social connection with less drugs/alcohol (neurotech-enhanced venues)</li>
-                            <li>Decrease the bandwidth of human/machine interaction</li>
-                            <li>Use neurotechnology to enhance meditation, sensation, and conscious experience</li>
-                            <li>Create biodiverse neighborhoods/living areas designed for human+nature symbiosis</li>
-                          </ul>
-                        </div>
-                      }
-                    >
-                      <strong>Large-Scale Goals</strong>
-                    </InlineArticle>
+                    <strong>Life Goals</strong>
+                    <br /><br />
+                    Things I want to do or help make happen in my lifetime:
+                    <br /><br />
+                    - Improve human sleep quality/reduce the amount of sleep we need
+                    <br /><br />
+                    - Create powerful therapies for focus, anxiety, and enhancing social connection
+                    <br /><br />
+                    - Shift the healthcare system to preventative care
+                    <br /><br />
+                    - restore the American dream
+                    <br /><br />
+                    - Decrease the bandwidth of human/machine interaction
+                    <br /><br />
+                    - Use neurotechnology to enhance meditation, sensation, and conscious experience
+                    <br /><br />
+                    - Create biodiverse neighborhoods/living areas designed for human+nature symbiosis
                   </p>
                 </div>
               </section>
